@@ -176,8 +176,8 @@
 </head>
 <body>
   <header>
-    <h1>Number em JavaScript</h1>
-    <p class="subtitle">Um guia completo sobre manipulação de Number em JavaScript</p>
+    <h1>Boolean em JavaScript</h1>
+    <p class="subtitle">Um guia completo sobre manipulação de Boolean em JavaScript</p>
   </header>
 
   <div class="container" id="container">
@@ -244,19 +244,16 @@ O operador !! é um hack idiomático para forçar coerção para booleano.
     Comparações implícitas
     ` },
     { pai: "#container", filho: "boxed", tag: "section", conteudo: "" },
+    { pai: "#boxed", filho: "boxed_h2", tag: "h2", conteudo: "boxed" },
     { pai: "#boxed", filho: "boxed_alert", tag: "div", conteudo: "", classe:"alert" },
     { pai: "#boxed_alert", filho: "boxed_alert_p", tag: "p", conteudo: `
     Boolean.prototype.myProp = 123;
     console.log((true).myProp); // 123
 
-    ` },
-    /*
-    */
+    ` }
 
 ],
-  nao_tecnico:[
-
-]
+  
 
 }
 function validar_array(array1,campo){
