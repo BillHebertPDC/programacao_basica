@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strings em JavaScript - Guia Completo</title>
+  <style>
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #2c3e50;
+      --accent-color: #e74c3c;
+      --background-color: #f9f9f9;
+      --code-background: #f5f5f5;
+      --text-color: #333;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--background-color);
+      padding: 0;
+    }
+    
+    header {
+      background-color: var(--primary-color);
+      color: white;
+      text-align: center;
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+    
+    section {
+      margin-bottom: 3rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+    }
+    
+    h2 {
+      color: var(--secondary-color);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary-color);
+    }
+    
+    h3 {
+      color: var(--secondary-color);
+      margin: 1.5rem 0 1rem;
+    }
+    
+    p {
+      margin-bottom: 1rem;
+    }
+    
+    code {
+      font-family: 'Consolas', 'Monaco', monospace;
+      background-color: var(--code-background);
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.9rem;
+    }
+    
+    pre {
+      background-color: var(--code-background);
+      padding: 1rem;
+      border-radius: 5px;
+      overflow-x: auto;
+      margin: 1rem 0;
+      border-left: 4px solid var(--primary-color);
+    }
+    
+    pre code {
+      background-color: transparent;
+      padding: 0;
+      font-size: 0.95rem;
+    }
+    
+    .method-container {
+      margin-bottom: 1.5rem;
+    }
+    
+    .method-name {
+      color: var(--accent-color);
+      font-weight: bold;
+    }
+    
+    .alert {
+      background-color: #fff3cd;
+      color: #856404;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 5px;
+      border-left: 4px solid #ffc107;
+    }
+    
+    .danger {
+      background-color: #f8d7da;
+      color: #721c24;
+      border-left-color: #dc3545;
+    }
+    
+    .tip {
+      background-color: #d4edda;
+      color: #155724;
+      border-left-color: #28a745;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    th {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    
+    .top-button {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s;
+    }
+    
+    .top-button:hover {
+      background-color: var(--secondary-color);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Strings em JavaScript</h1>
+    <p class="subtitle">Um guia completo sobre manipulação de strings em JavaScript</p>
+  </header>
+
+  <div class="container" id="container">
+  </div>
+  <button class="top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+  <script>
+let string = {
+  tecnica: [
+    { pai: "#container", filho: "introducao", tag: "section", conteudo: "" },
+    { pai: "#introducao", filho: "introducao_h2", tag: "h2", conteudo: "Introdução" },
+    { pai: "#introducao", filho: "introducao_p1", tag: "p", conteudo: "Em JavaScript, uma string é uma sequência de zero ou mais caracteres Unicode. Elas são usadas para representar texto." },
+    { pai: "#introducao", filho: "introducao_p2", tag: "p", conteudo: "Um ponto crucial sobre strings em JavaScript é que elas são <strong  id=\"introducao_st\">imutáveis</strong>. Isso significa que, uma vez que uma string é criada, você não pode alterar seus caracteres individualmente. Qualquer operação que pareça modificar uma string, na verdade, cria uma nova string com as alterações desejadas." },
+    { pai: "#container", filho: "representacao", tag: "section", conteudo: "" },
+    { pai: "#representacao", filho: "representacao_h2", tag: "h2", conteudo: "Representação Interna" },
+    { pai: "#representacao", filho: "representacao_p1", tag: "p", conteudo: "Internamente, as strings em JavaScript são codificadas usando UTF-16. Isso significa que cada caractere na string é representado por um ou dois valores de 16 bits (code units)." },
+    { pai: "#representacao", filho: "representacao_p2", tag: "p", conteudo: "A maioria dos caracteres comuns é representada por um único code unit." },
+    { pai: "#representacao", filho: "representacao_p3", tag: "p", conteudo: "Caracteres Unicode em planos superiores (fora do Plano Multilíngue Básico - BMP) são representados por um par de code units, conhecidos como surrogate pair." },
+    { pai: "#representacao", filho: "representacao_p4", tag: "p", conteudo: "É importante estar ciente disso ao trabalhar com propriedades como <code>length</code> e ao iterar sobre strings, pois um único caractere pode ocupar um ou dois \"espaços\" em termos de code units." },
+    { pai: "#representacao", filho: "representacao_div", tag: "div", conteudo: "", classe: "alert" },
+    { pai: "#representacao_div", filho: "representacao_div_h3", tag: "h3", conteudo: "Exemplo de surrogate pair", },
+    { pai: "#representacao_div", filho: "representacao_div_pre", tag: "pre", conteudo: "", },
+    {
+      pai: "#representacao_div_pre", filho: "representacao_div_pre_code", tag: "code", conteudo: `
+  let emojiComplexo = "😊"; // Este emoji é representado por um surrogate pair
+  console.log(emojiComplexo.length); // Saída: 2 (conta os code units)
+  
+  // Para iterar corretamente sobre os caracteres (incluindo surrogate pairs):
+  for (const char of emojiComplexo) {
+    console.log(char); // Saída: 😊
+  }
+    `},
+    { pai: "#representacao", filho: "representacao_alert", tag: "div", conteudo: "", classe: "alert tip" },
+    { pai: "#representacao_alert", filho: "representacao_alert_h3", tag: "h3", conteudo: 'Strings são array-like mas não arrays.' },
+    { pai: "#representacao_alert", filho: "representacao_alert_pre", tag: "pre", conteudo: '' },
+    { pai: "#representacao_alert_pre", filho: "representacao_alert_pre_code", tag: "code", conteudo: `
+const emoji = "💩";
+console.log(emoji.charAt(0)); // quebra!
+console.log([...emoji][0]);   // correto
+
+    ` },
+
+
+
+    { pai: "#container", filho: "criacao", tag: "section", conteudo: "" },
+    { pai: "#criacao", filho: "criacao_h2", tag: "h2", conteudo: "Como Criar Strings" },
+    { pai: "#criacao", filho: "criacao_p1", tag: "p", conteudo: "Existem várias maneiras de criar strings em JavaScript:" },
+    { pai: "#criacao", filho: "criacao_h3_1", tag: "h3", conteudo: "Literais de String" },
+    { pai: "#criacao", filho: "criacao_pre_1", tag: "pre", conteudo: "" },
+    {
+      pai: "#criacao_pre_1", filho: "criacao_code_1", tag: "code",
+      conteudo: `
+  let texto1 = 'com aspas simples.';
+  let texto2 = "com aspas duplas";
+        `},
+    { pai: "#criacao", filho: "criacao_h3_2", tag: "h3", conteudo: "Template Literals (ES6+)" },
+    { pai: "#criacao", filho: "criacao_pre_2", tag: "pre", conteudo: "" },
+    {
+      pai: "#criacao_pre_2", filho: "criacao_code_2", tag: "code", conteudo: `
+  let nome = "Maria";
+  let saudacao = \`Olá, \${nome}!\`; // Permite interpolação de variáveis
+  
+  `},
+    { pai: "#criacao", filho: "criacao_h3_3", tag: "h3", conteudo: "Construtor String" },
+    { pai: "#criacao", filho: "criacao_pre_3", tag: "pre", conteudo: "" },
+    {
+      pai: "#criacao_pre_3", filho: "criacao_code_3", tag: "code", conteudo: `
+  let texto3 = new String("texto"); // Cria um objeto String (não recomendado para uso geral)
+  
+  ` },
+    { pai: "#criacao", filho: "criacao_h3_4", tag: "h3", conteudo: "String.raw" },
+    { pai: "#criacao", filho: "criacao_p_4", tag: "p", conteudo: `String.raw é uma tag built-in (já pronta) do JavaScript para template literals. Ela retorna a string literal crua, ou seja, sem interpretar escapes como \\n, \\t, \\uXXXX, etc. Ideal para quando você precisa da string exatamente como escrita no código-fonte. ` },
+    {
+      pai: "#criacao", filho: "criacao_pre_4", tag: "pre", conteudo: ``
+    },
+    {
+      pai: "#criacao_pre_4", filho: "criacao_code_4", tag: "code", conteudo: `
+String.raw\`linha1\\nlinha2\`
+  ` },
+
+
+    { pai: "#container", filho: "propriedades", tag: "section", conteudo: "" },
+    { pai: "#propriedades", filho: "propriedades_h2", tag: "h2", conteudo: "Propriedades" },
+    { pai: "#propriedades", filho: "propriedades_div_length", tag: "div", conteudo: "", classe: "method-container" },
+    { pai: "#propriedades_div_length", filho: "propriedades_h3_length", tag: "h3", conteudo: `` },
+    { pai: "#propriedades_h3_length", filho: "propriedades_h3_length_span", tag: "span", conteudo: `length`, classe: "method-name" },
+    { pai: "#propriedades_div_length", filho: "propriedades_p1", tag: "p", conteudo: "Retorna o número de unidades de código (code units) na string." },
+    { pai: "#propriedades_div_length", filho: "propriedades_pre", tag: "pre", conteudo: "" },
+    {
+      pai: "#propriedades_pre", filho: "propriedades_code", tag: "code", conteudo: `
+  let texto = "JavaScript";
+  console.log(texto.length); // 10
+  
+  `},
+    { pai: "#propriedades_div_length", filho: "propriedades_p2", tag: "p", conteudo: 'Lembre-se que, devido à codificação UTF-16, alguns caracteres (como emojis) podem ocupar duas unidades de código, portanto <code>length</code> pode não corresponder ao número de caracteres visíveis.', classe: "alert" },
+    { pai: "#container", filho: "metodos", tag: "section", conteudo: "" },
+    { pai: "#metodos", filho: "metodos_h2", "tag": "h2", "conteudo": "Métodos" },
+
+    { pai: "#metodos", filho: "metodos_charAt_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_charAt_h3", filho: "metodos_charAt_h3_span", tag: "span", conteudo: `charAt(index)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_charAt_p1", tag: "p", conteudo: `Retorna o caractere (como uma string) no índice especificado.` },
+    { pai: "#metodos", filho: "metodos_charAt_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_charAt_pre", filho: "metodos_charAt_pre_code", tag: "code", conteudo: `let texto = 'JavaScript';\nconsole.log(texto.charAt(0)); // 'J'` },
+
+    { pai: "#metodos", filho: "metodos_charCodeAt_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_charCodeAt_h3", filho: "metodos_charCodeAt_h3_span", tag: "span", conteudo: `charCodeAt(index)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_charCodeAt_p1", tag: "p", conteudo: `Retorna o valor Unicode (um número inteiro entre 0 e 65535) do caractere no índice especificado. Para surrogate pairs, retorna o valor do primeiro code unit.` },
+    { pai: "#metodos", filho: "metodos_charCodeAt_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_charCodeAt_pre", filho: "metodos_charCodeAt_pre_code", tag: "code", conteudo: `let texto = 'A';\nconsole.log(texto.charCodeAt(0)); // 65` },
+
+    { pai: "#metodos", filho: "metodos_codePointAt_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_codePointAt_h3", filho: "metodos_codePointAt_h3_span", tag: "span", conteudo: `codePointAt(index)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_codePointAt_p1", tag: "p", conteudo: `Retorna o valor Unicode real (code point) do caractere no índice especificado. Lida corretamente com surrogate pairs.` },
+    { pai: "#metodos", filho: "metodos_codePointAt_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_codePointAt_pre", filho: "metodos_codePointAt_pre_code", tag: "code", conteudo: `let emoji = '😊';\nconsole.log(emoji.codePointAt(0)); // 128522` },
+
+    { pai: "#metodos", filho: "metodos_concat_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_concat_h3", filho: "metodos_concat_h3_span", tag: "span", conteudo: `concat(str1, str2, ...)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_concat_p1", tag: "p", conteudo: `Retorna uma nova string que é a concatenação da string original com as strings fornecidas. O operador + é geralmente preferível para concatenação.` },
+    { pai: "#metodos", filho: "metodos_concat_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_concat_pre", filho: "metodos_concat_pre_code", tag: "code", conteudo: `let texto1 = 'Olá ';\nlet texto2 = 'mundo!';\nconsole.log(texto1.concat(texto2)); // 'Olá mundo!'\n// Equivalente a:\nconsole.log(texto1 + texto2); // 'Olá mundo!'` },
+
+    { pai: "#metodos", filho: "metodos_slice_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_slice_h3", filho: "metodos_slice_h3_span", tag: "span", conteudo: `slice(start, end)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_slice_p1", tag: "p", conteudo: `Extrai uma seção da string e retorna uma nova string. O índice end não é incluído. Índices negativos contam a partir do final da string.` },
+    { pai: "#metodos", filho: "metodos_slice_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_slice_pre", filho: "metodos_slice_pre_code", tag: "code", conteudo: `let texto = 'JavaScript';\nconsole.log(texto.slice(0, 4)); // 'Java'\nconsole.log(texto.slice(4)); // 'Script'\nconsole.log(texto.slice(-6)); // 'Script' (começa 6 caracteres a partir do final)` },
+
+    { pai: "#metodos", filho: "metodos_substring_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_substring_h3", filho: "metodos_substring_h3_span", tag: "span", conteudo: `substring(start, end)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_substring_p1", tag: "p", conteudo: `Similar a slice(), mas não lida com índices negativos de forma consistente entre navegadores. Geralmente, slice() é preferível.` },
+    { pai: "#metodos", filho: "metodos_substring_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_substring_pre", filho: "metodos_substring_pre_code", tag: "code", conteudo: `let texto = 'JavaScript';\nconsole.log(texto.substring(0, 4)); // 'Java'` },
+
+    { pai: "#metodos", filho: "metodos_substr_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_substr_h3", filho: "metodos_substr_h3_span", tag: "span", conteudo: `substr(start, length)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_substr_p1", tag: "p", conteudo: `Extrai uma seção da string, começando em start e com o número de caracteres especificado por length. Este método é considerado legado e não é recomendado para uso em código novo.` },
+    { pai: "#metodos", filho: "metodos_substr_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_substr_pre", filho: "metodos_substr_pre_code", tag: "code", conteudo: `let texto = 'JavaScript';\nconsole.log(texto.substr(0, 4)); // 'Java'` },
+
+    { pai: "#metodos", filho: "metodos_toUpperCase_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_toUpperCase_h3", filho: "metodos_toUpperCase_h3_span", tag: "span", conteudo: `toUpperCase()`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_toUpperCase_p1", tag: "p", conteudo: `Retorna uma nova string com todos os caracteres convertidos para maiúsculas.` },
+    { pai: "#metodos", filho: "metodos_toUpperCase_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_toUpperCase_pre", filho: "metodos_toUpperCase_pre_code", tag: "code", conteudo: `let texto = 'JavaScript';\nconsole.log(texto.toUpperCase()); // 'JAVASCRIPT'` },
+
+    { pai: "#metodos", filho: "metodos_toLowerCase_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_toLowerCase_h3", filho: "metodos_toLowerCase_h3_span", tag: "span", conteudo: `toLowerCase()`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_toLowerCase_p1", tag: "p", conteudo: `Retorna uma nova string com todos os caracteres convertidos para minúsculas.` },
+    { pai: "#metodos", filho: "metodos_toLowerCase_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_toLowerCase_pre", filho: "metodos_toLowerCase_pre_code", tag: "code", conteudo: `let texto = 'JavaScript';\nconsole.log(texto.toLowerCase()); // 'javascript'` },
+
+    { pai: "#metodos", filho: "metodos_trim_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_trim_h3", filho: "metodos_trim_h3_span", tag: "span", conteudo: `trim()`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_trim_p1", tag: "p", conteudo: `Retorna uma nova string com espaços em branco (espaços, tabulações, quebras de linha, etc.) removidos do início e do final da string.` },
+    { pai: "#metodos", filho: "metodos_trim_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_trim_pre", filho: "metodos_trim_pre_code", tag: "code", conteudo: `let texto = '  JavaScript  ';\nconsole.log(texto.trim()); // 'JavaScript'` },
+
+    { pai: "#metodos", filho: "metodos_startsWith_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_startsWith_h3", filho: "metodos_startsWith_h3_span", tag: "span", conteudo: `startsWith(searchString, position)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_startsWith_p1", tag: "p", conteudo: `Retorna um booleano indicando se a string começa com a searchString, opcionalmente a partir da position.` },
+    { pai: "#metodos", filho: "metodos_startsWith_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_startsWith_pre", filho: "metodos_startsWith_pre_code", tag: "code", conteudo: `let texto = 'JavaScript';\nconsole.log(texto.startsWith('Java')); // true\nconsole.log(texto.startsWith('Script', 4)); // true` },
+
+    { pai: "#metodos", filho: "metodos_endsWith_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_endsWith_h3", filho: "metodos_endsWith_h3_span", tag: "span", conteudo: `endsWith(searchString, length)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_endsWith_p1", tag: "p", conteudo: `Retorna um booleano indicando se a string termina com a searchString, opcionalmente até o length especificado.` },
+    { pai: "#metodos", filho: "metodos_endsWith_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_endsWith_pre", filho: "metodos_endsWith_pre_code", tag: "code", conteudo: `let texto = 'JavaScript';\nconsole.log(texto.endsWith('Script')); // true\nconsole.log(texto.endsWith('Java', 4)); // true` },
+
+    { pai: "#metodos", filho: "metodos_includes_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_includes_h3", filho: "metodos_includes_h3_span", tag: "span", conteudo: `includes(searchString, position)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_includes_p1", tag: "p", conteudo: `Retorna um booleano indicando se a string contém a searchString, opcionalmente a partir da position.` },
+    { pai: "#metodos", filho: "metodos_includes_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_includes_pre", filho: "metodos_includes_pre_code", tag: "code", conteudo: `let texto = 'JavaScript';\nconsole.log(texto.includes('Script')); // true\nconsole.log(texto.includes('Type')); // false` },
+
+    { pai: "#metodos", filho: "metodos_indexOf_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_indexOf_h3", filho: "metodos_indexOf_h3_span", tag: "span", conteudo: `indexOf(searchValue, fromIndex)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_indexOf_p1", tag: "p", conteudo: `Retorna o índice da primeira ocorrência de searchValue na string, ou -1 se não for encontrado. A busca começa em fromIndex (opcional).` },
+    { pai: "#metodos", filho: "metodos_indexOf_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_indexOf_pre", filho: "metodos_indexOf_pre_code", tag: "code", conteudo: `let texto = 'JavaScript';\nconsole.log(texto.indexOf('a')); // 1\nconsole.log(texto.indexOf('a', 2)); // 3` },
+
+    { pai: "#metodos", filho: "metodos_lastIndexOf_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_lastIndexOf_h3", filho: "metodos_lastIndexOf_h3_span", tag: "span", conteudo: `lastIndexOf(searchValue, fromIndex)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_lastIndexOf_p1", tag: "p", conteudo: `Retorna o índice da última ocorrência de searchValue na string, ou -1 se não for encontrado. A busca começa de trás para frente a partir de fromIndex (opcional).` },
+    { pai: "#metodos", filho: "metodos_lastIndexOf_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_lastIndexOf_pre", filho: "metodos_lastIndexOf_pre_code", tag: "code", conteudo: `let texto = 'JavaScript';\nconsole.log(texto.lastIndexOf('a')); // 3` },
+
+    { pai: "#metodos", filho: "metodos_replace_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_replace_h3", filho: "metodos_replace_h3_span", tag: "span", conteudo: `replace(searchValue, newValue)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_replace_p1", tag: "p", conteudo: `Retorna uma nova string com a primeira ocorrência de searchValue substituída por newValue. searchValue pode ser uma string ou uma expressão regular.` },
+    { pai: "#metodos", filho: "metodos_replace_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_replace_pre", filho: "metodos_replace_pre_code", tag: "code", conteudo: `let texto = 'JavaScript é incrível';\nconsole.log(texto.replace('incrível', 'fantástico')); // 'JavaScript é fantástico'` },
+
+    { pai: "#metodos", filho: "metodos_replaceAll_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_replaceAll_h3", filho: "metodos_replaceAll_h3_span", tag: "span", conteudo: `replaceAll(searchValue, newValue)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_replaceAll_p1", tag: "p", conteudo: `Retorna uma nova string com todas as ocorrências de searchValue substituídas por newValue. searchValue pode ser uma string ou uma expressão regular.` },
+    { pai: "#metodos", filho: "metodos_replaceAll_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_replaceAll_pre", filho: "metodos_replaceAll_pre_code", tag: "code", conteudo: `let texto = 'maçã, banana, maçã';\nconsole.log(texto.replaceAll('maçã', 'laranja')); // 'laranja, banana, laranja'` },
+
+    { pai: "#metodos", filho: "metodos_split_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_split_h3", filho: "metodos_split_h3_span", tag: "span", conteudo: `split(separator, limit)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_split_p1", tag: "p", conteudo: `Divide a string em um array de substrings, usando o separator especificado. O limit opcional especifica o número máximo de divisões.` },
+    { pai: "#metodos", filho: "metodos_split_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_split_pre", filho: "metodos_split_pre_code", tag: "code", conteudo: `let texto = 'maçã,banana,laranja';\nconsole.log(texto.split(',')); // ['maçã', 'banana', 'laranja']\nconsole.log(texto.split(',', 2)); // ['maçã', 'banana']` },
+
+    { pai: "#metodos", filho: "metodos_padStart_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_padStart_h3", filho: "metodos_padStart_h3_span", tag: "span", conteudo: `padStart(targetLength, padString)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_padStart_p1", tag: "p", conteudo: `Preenche o início da string com padString até atingir o targetLength.` },
+    { pai: "#metodos", filho: "metodos_padStart_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_padStart_pre", filho: "metodos_padStart_pre_code", tag: "code", conteudo: `let texto = '5';\nconsole.log(texto.padStart(3, '0')); // '005'` },
+
+    { pai: "#metodos", filho: "metodos_padEnd_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_padEnd_h3", filho: "metodos_padEnd_h3_span", tag: "span", conteudo: `padEnd(targetLength, padString)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_padEnd_p1", tag: "p", conteudo: `Preenche o final da string com padString até atingir o targetLength.` },
+    { pai: "#metodos", filho: "metodos_padEnd_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_padEnd_pre", filho: "metodos_padEnd_pre_code", tag: "code", conteudo: `let texto = '5';\nconsole.log(texto.padEnd(3, '0')); // '500'` },
+
+    { pai: "#container", filho: "regex-methods", tag: "section", conteudo: "" },
+    { pai: "#regex-methods", filho: "regex_methods_h2", tag: "h2", conteudo: "Métodos com Expressões Regulares" },
+
+    { pai: "#regex-methods", filho: "regex_match", tag: "div", conteudo: "", classe: "method-container" },
+    { pai: "#regex_match", filho: "regex_match_h3", tag: "h3", conteudo: `` },
+    { pai: "#regex_match", filho: "regex_match_h3_span", tag: "span", conteudo: `match(regexp)`, classe: "method-name" },
+    { pai: "#regex_match", filho: "regex_match_p", tag: "p", conteudo: "Retorna um array contendo os resultados da correspondência da expressão regular na string, ou null se não houver correspondência." },
+    { pai: "#regex_match", filho: "regex_match_pre", tag: "pre", conteudo: "" },
+    {
+      pai: "#regex_match_pre", filho: "regex_match_code", tag: "code", conteudo: `
+  let texto = "O JavaScript é uma linguagem de programação incrível!";
+  console.log(texto.match(/[a-z]+/gi)); // ["O", "JavaScript", "é", "uma", "linguagem", "de", "programação", "incrível"]
+  
+  `},
+
+    { pai: "#regex-methods", filho: "regex_matchAll", tag: "div", conteudo: "", classe: "method-container" },
+    { pai: "#regex_matchAll", filho: "regex_matchAll_h3", tag: "h3", conteudo: `` },
+    { pai: "#regex_matchAll_h3", filho: "regex_matchAll_h3_span", tag: "span", conteudo: `matchAll(regexp)`, classe: "method-name" },
+
+    { pai: "#regex_matchAll", filho: "regex_matchAll_p", tag: "p", conteudo: "Retorna um iterador de todos os resultados da correspondência da expressão regular na string. Útil para obter todas as correspondências, especialmente com grupos de captura." },
+    { pai: "#regex_matchAll", filho: "regex_matchAll_pre", tag: "pre", conteudo: "" },
+    {
+      pai: "#regex_matchAll_pre", filho: "regex_matchAll_code", tag: "code", conteudo: `
+  let texto = "teste1 teste2 teste3";
+  let regexp = /teste(\\d)/g;
+  let matches = [...texto.matchAll(regexp)];
+  console.log(matches); // Array de correspondências com detalhes dos grupos
+  
+  `},
+    { pai: "#regex-methods", filho: "regex_search", tag: "div", conteudo: "", classe: "method-container" },
+    { pai: "#regex_search", filho: "regex_search_h3", tag: "h3", conteudo: `` },
+    { pai: "#regex_search_h3", filho: "regex_search_h3_span", tag: "span", conteudo: `search(regexp)`, classe: "method-name" },
+
+    { pai: "#regex_search", filho: "regex_search_p", tag: "p", conteudo: "Retorna o índice da primeira correspondência da expressão regular na string, ou -1 se não houver correspondência." },
+    { pai: "#regex_search", filho: "regex_search_pre", tag: "pre", conteudo: "" },
+    {
+      pai: "#regex_search_pre", filho: "regex_search_code", tag: "code", conteudo: `
+  let texto = "JavaScript é incrível";
+  console.log(texto.search(/incrível/)); // 14
+  
+  `},
+    { pai: "#container", filho: "coercao", tag: "section", conteudo: "" },
+    { pai: "#coercao", filho: "coercao_h2", tag: "h2", conteudo: "Coerção de Tipo" },
+    { pai: "#coercao", filho: "coercao_p", tag: "p", conteudo: "JavaScript frequentemente realiza coerção de tipo implícita entre strings e outros tipos de dados. Por exemplo, ao usar o operador + com uma string e outro tipo, o outro tipo geralmente é convertido para string:" },
+    { pai: "#coercao", filho: "coercao_pre", tag: "pre", conteudo: "" },
+    {
+      pai: "#coercao_pre", filho: "coercao_code", tag: "code", conteudo: `
+  console.log("5" + 2); // "52" (o número 2 é convertido para string)
+  console.log(2 + "5"); // "25" (mesmo comportamento)
+  console.log("5" - 2); // 3 (a string "5" é convertida para número)
+  console.log("5" * "2"); // 10 (ambas as strings são convertidas para números)
+  
+  `},
+    { pai: "#coercao", filho: "coercao_alert", tag: "div", conteudo: "", classe: "alert tip" },
+    { pai: "#coercao_alert", filho: "coercao_alert_p", tag: "p", conteudo: 'Para conversões explícitas, você pode usar funções como <code>Number()</code>, <code>String()</code>, <code>parseInt()</code> ou o operador unário <code>+</code>.' },
+    { pai: "#container", filho: "performance", tag: "section", conteudo: "" },
+    { pai: "#performance", filho: "performance_h2", tag: "h2", conteudo: "Performance" },
+    { pai: "#performance", filho: "performance_p", tag: "p", conteudo: "Devido à imutabilidade das strings, operações que parecem modificar strings (como concatenação repetida dentro de um loop usando +) podem ser ineficientes, pois criam muitas strings intermediárias. Em cenários de manipulação intensiva de strings, é geralmente mais eficiente usar métodos como Array.prototype.join() após manipular as partes da string em um array." },
+    { pai: "#performance", filho: "performance_h3", tag: "h3", conteudo: "Exemplo de problema de performance" },
+    { pai: "#performance", filho: "performance_pre", tag: "pre", conteudo: "" },
+    {
+      pai: "#performance_pre", filho: "performance_code", tag: "code", conteudo: `
+  // Ineficiente para grandes números de iterações
+  let resultado = "";
+  for (let i = 0; i < 10000; i++) {
+    resultado += "algum texto"; // Cria uma nova string a cada iteração
+  }
+  
+  // Mais eficiente
+  let partes = [];
+  for (let i = 0; i < 10000; i++) {
+    partes.push("algum texto");
+  }
+  let resultado = partes.join(""); // Cria apenas uma string no final
+  
+  `},
+
+    { pai: "#container", filho: "seguranca", tag: "section", conteudo: "" },
+    { pai: "#seguranca", filho: "seguranca_h2", tag: "h2", conteudo: "Considerações de Segurança" },
+    { pai: "#seguranca", filho: "seguranca_p1", tag: "p", conteudo: "Ao lidar com strings que vêm de fontes externas (como entrada do usuário), é crucial tomar precauções de segurança para evitar vulnerabilidades como Cross-Site Scripting (XSS). Isso pode envolver a sanitização ou codificação da entrada para garantir que ela seja tratada como texto e não como código executável." },
+    { pai: "#seguranca", filho: "seguranca_div_alert", tag: "div", conteudo: "", attrs: { class: "alert danger" } },
+    { pai: "#seguranca_div_alert", filho: "seguranca_h3_alert", tag: "h3", conteudo: "Exemplo de risco de XSS" },
+    { pai: "#seguranca_div_alert", filho: "seguranca_pre_alert", tag: "pre", conteudo: "" },
+    {
+      pai: "#seguranca_pre_alert", filho: "seguranca_code_alert", tag: "code", conteudo: `
+  // Dado malicioso (simulando entrada de usuário)
+  const userInput = \'< i m g src=x onerror="roubarDados()">\';
+  
+  // ⚠️ Risco de XSS, independente do método de concatenação:
+  const str1 = "Olá, " + userInput; 
+  
+  element.innerHTML = str1; // Executará o script malicioso!
+   
+  `},
+    { pai: "#seguranca", filho: "seguranca_h3_sanitizacao", tag: "h3", conteudo: "Sanitização/Codificação de Dados" },
+    { pai: "#seguranca", filho: "seguranca_p2", tag: "p", conteudo: "Use bibliotecas como DOMPurify para remover código executável de strings:" },
+    { pai: "#seguranca", filho: "seguranca_pre1", tag: "pre", conteudo: "" },
+    {
+      pai: "#seguranca_pre1", filho: "seguranca_code1", tag: "code", conteudo: `
+  import DOMPurify from 'dompurify';
+  const safeInput = DOMPurify.sanitize(userInput); // Remove scripts!
+  const safeStr = ["Olá, ", safeInput].join("");
+  
+  `},
+    { pai: "#seguranca", filho: "seguranca_p3", tag: "p", conteudo: "Para contextos não HTML (como URLs ou atributos), use funções de codificação:" },
+    { pai: "#seguranca", filho: "seguranca_pre2", tag: "pre", conteudo: "" },
+    {
+      pai: "#seguranca_pre2", filho: "seguranca_code2", tag: "code", conteudo: `
+  // Codificar para HTML:
+  const encodedHTML = userInput.replace(/&/g, '& amp;').replace(/"<"/ g, '&alt;');
+  // Codificar para URLs:
+  const encodedURL = encodeURIComponent(userInput);
+  
+  `},
+    { pai: "#seguranca", filho: "seguranca_h3_textcontent", tag: "h3", conteudo: "Evite innerHTML quando possível" },
+    { pai: "#seguranca", filho: "seguranca_p4", tag: "p", conteudo: "Prefira métodos seguros como textContent para inserir dados não confiáveis:" },
+    { pai: "#seguranca", filho: "seguranca_pre3", tag: "pre", conteudo: "" },
+    { pai: "#seguranca_pre3", filho: "seguranca_code3", tag: "code", conteudo: `element.textContent = userInput; // Seguro: trata tudo como texto!` },
+
+    { pai: "#container", filho: "normalizacao", tag: "section", conteudo: "" },
+    { pai: "#normalizacao", filho: "normalizacao_h2", tag: "h2", conteudo: "Normalização" },
+    { pai: "#normalizacao", filho: "normalizacao_p4", tag: "p", conteudo: "Strings com acentos ou caracteres compostos (como é vs e + acento) podem parecer iguais visualmente, mas internamente são diferentes. Isso é crucial para buscas e comparações." },
+    { pai: "#normalizacao", filho: "normalizacao_pre", tag: "pre", conteudo: "" },
+    { pai: "#normalizacao_pre", filho: "normalizacao_pre_code", tag: "code", conteudo: `
+const a = 'é'; // U+00E9
+const b = 'e\\u0301'; // U+0065 + U+0301 (e + acento)
+console.log(a === b); // false
+console.log(a.normalize() === b.normalize()); // true
+` },
+
+    { pai: "#container", filho: "localidade", tag: "section", conteudo: "" },
+    { pai: "#localidade", filho: "localidade_h2", tag: "h2", conteudo: "Comparação de Strings Sensível a Localidade" },
+    { pai: "#localidade", filho: "localidade_p4", tag: "p", conteudo: "Comparações padrão com === ou > não respeitam ordenações linguísticas (por exemplo, alemão ou sueco)." },
+    { pai: "#localidade", filho: "localidade_pre", tag: "pre", conteudo: "" },
+    { pai: "#localidade_pre", filho: "localidade_pre_code", tag: "code", conteudo: `
+console.log('ä'.localeCompare('z', 'de')); // -1 (alemão)
+console.log('ä'.localeCompare('z', 'sv')); // 1 (sueco)
+` },
+
+
+    { pai: "#container", filho: "tagged", tag: "section", conteudo: "" },
+    { pai: "#tagged", filho: "tagged_h2", tag: "h2", conteudo: "Tagged Template Literals" },
+    { pai: "#tagged", filho: "tagged_p4", tag: "p", conteudo: "Tagged Template Literals em JavaScript são uma feature avançada de template literals (strings com crases `), que permite processar a interpolação de strings com uma função tag personalizada antes que o valor final seja construído." },
+    { pai: "#tagged", filho: "tagged_pre", tag: "pre", conteudo: "" },
+    { pai: "#tagged_pre", filho: "tagged_pre_code", tag: "code", conteudo: `
+function tag(strings, ...values) {
+  console.log('Strings:', strings);
+  console.log('Values:', values);
+}
+
+const nome = "Bill";
+const idade = 30;
+
+tag\`Nome: \${nome}, Idade: \${idade}\`;
+// Strings: ["Nome: ", ", Idade: ", ""]
+// Values: ["Bill", 30]
+
+` },
+
+
+
+
+
+  ],
+  nao_tecnico: [
+    { pai: "#container", filho: "introducao", tag: "section", conteudo: "" },
+    { pai: "#introducao", filho: "introducao_h2", tag: "h2", conteudo: "Introdução" },
+    { pai: "#introducao", filho: "introducao_p1", tag: "p", conteudo: "String é só um nome chique pra texto no JavaScript. Pode ser uma palavra, frase ou qualquer coisa que você escreve entre aspas." },
+    { pai: "#introducao", filho: "introducao_p2", tag: "p", conteudo: "Um detalhe importante: strings são <strong id=\"introducao_st\">fixas</strong>. Ou seja, depois que você cria uma, não dá pra mudar ela direto. Se quiser mudar algo, tem que fazer uma nova com o que você quer." },
+    { pai: "#container", filho: "representacao", tag: "section", conteudo: "" },
+    { pai: "#representacao", filho: "representacao_h2", tag: "h2", conteudo: "Como o Texto Funciona por Dentro" },
+    { pai: "#representacao", filho: "representacao_p1", tag: "p", conteudo: "Por dentro, o JavaScript guarda o texto usando códigos especiais chamados UTF-16. Cada letra vira um número desses." },
+    { pai: "#representacao", filho: "representacao_p2", tag: "p", conteudo: "A maioria das letras e símbolos comuns vira só um desses códigos." },
+    { pai: "#representacao", filho: "representacao_p3", tag: "p", conteudo: "Alguns símbolos diferentes, tipo emojis ou letras raras, viram dois códigos juntos pra funcionar direitinho." },
+    { pai: "#representacao", filho: "representacao_p4", tag: "p", conteudo: "Isso é bom saber porque, quando você conta letras ou tenta mostrar uma por uma, às vezes um símbolo ocupa dois espaços." },
+    { pai: "#representacao", filho: "representacao_div", tag: "div", conteudo: "", classe: "alert" },
+    { pai: "#representacao_div", filho: "representacao_div_h3", tag: "h3", conteudo: "Exemplo com Emojis" },
+    { pai: "#representacao_div", filho: "representacao_div_pre", tag: "pre", conteudo: "" },
+    {
+      pai: "#representacao_div_pre", filho: "representacao_div_pre_code", tag: "code", conteudo: `
+let emojiComplexo = "😊"; // Esse emoji ocupa dois espaços internos
+console.log(emojiComplexo.length); // Mostra 2 (porque são dois pedaços de código)
+
+// Para pegar os símbolos certinho, mesmo os mais complicados:
+for (const char of emojiComplexo) {
+  console.log(char); // Mostra: 😊
+}
+`},
+    { pai: "#container", filho: "criacao", tag: "section", conteudo: "" },
+    { pai: "#criacao", filho: "criacao_h2", tag: "h2", conteudo: "Como Criar Texto no Código" },
+    { pai: "#criacao", filho: "criacao_p1", tag: "p", conteudo: "Você pode criar textos no JavaScript de alguns jeitos diferentes:" },
+    { pai: "#criacao", filho: "criacao_h3_1", tag: "h3", conteudo: "Com Aspas Simples ou Duplas" },
+    { pai: "#criacao", filho: "criacao_pre_1", tag: "pre", conteudo: "" },
+    {
+      pai: "#criacao_pre_1", filho: "criacao_code_1", tag: "code",
+      conteudo: `
+let texto1 = 'texto com aspas simples';
+let texto2 = "texto com aspas duplas";
+`},
+    { pai: "#criacao", filho: "criacao_h3_2", tag: "h3", conteudo: "Com Crase (Template Literal)" },
+    { pai: "#criacao", filho: "criacao_pre_2", tag: "pre", conteudo: "" },
+    {
+      pai: "#criacao_pre_2", filho: "criacao_code_2", tag: "code", conteudo: `
+let nome = "Maria";
+let saudacao = \`Olá, \${nome}!\`; // Dá pra colocar variáveis direto no texto
+`},
+    { pai: "#criacao", filho: "criacao_h3_3", tag: "h3", conteudo: "Usando o Objeto String (menos comum)" },
+    { pai: "#criacao", filho: "criacao_pre_3", tag: "pre", conteudo: "" },
+    {
+      pai: "#criacao_pre_3", filho: "criacao_code_3", tag: "code", conteudo: `
+let texto3 = new String("texto"); // Cria uma versão especial de texto (quase nunca precisa usar)
+`},
+    { pai: "#container", filho: "propriedades", tag: "section", conteudo: "" },
+    { pai: "#propriedades", filho: "propriedades_h2", tag: "h2", conteudo: "Propriedades" },
+    { pai: "#propriedades", filho: "propriedades_div_length", tag: "div", conteudo: "", classe: "method-container" },
+    { pai: "#propriedades_div_length", filho: "propriedades_h3_length", tag: "h3", conteudo: "" },
+    { pai: "#propriedades_h3_length", filho: "propriedades_h3_length_span", tag: "span", conteudo: `length`, classe: "method-name" },
+    { pai: "#propriedades_div_length", filho: "propriedades_p1", tag: "p", conteudo: "Diz quantos pedacinhos de texto tem dentro da string. Cada letra ou símbolo conta como um ou dois desses pedacinhos." },
+    { pai: "#propriedades_div_length", filho: "propriedades_pre", tag: "pre", conteudo: "" },
+    {
+      pai: "#propriedades_pre", filho: "propriedades_code", tag: "code", conteudo: `
+let texto = "JavaScript";
+console.log(texto.length); // 10
+`},
+    { pai: "#propriedades_div_length", filho: "propriedades_p2", tag: "p", conteudo: 'Lembre-se: alguns símbolos, como emojis, podem ser mais complicados e ocupar mais de um pedaço de código. Por isso, o número que o <code>length</code> mostra pode não ser igual ao número de símbolos que você vê na tela.', classe: "alert" },
+    { pai: "#container", filho: "metodos", tag: "section", conteudo: "" },
+    { pai: "#metodos", filho: "metodos_h2", tag: "h2", conteudo: "Métodos" },
+
+    { pai: "#metodos", filho: "metodos_charAt_h3", tag: "h3", conteudo: "" },
+    { pai: "#metodos_charAt_h3", filho: "metodos_charAt_h3_span", tag: "span", conteudo: `charAt(index)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_charAt_p1", tag: "p", conteudo: `Pega o símbolo que está na posição que você especificar.` },
+    { pai: "#metodos", filho: "metodos_charAt_pre", tag: "pre", conteudo: "" },
+    { pai: "#metodos_charAt_pre", filho: "metodos_charAt_pre_code", tag: "code", conteudo: `let texto = 'JavaScript';\nconsole.log(texto.charAt(0)); // 'J'` },
+
+    { pai: "#metodos", filho: "metodos_charCodeAt_h3", tag: "h3", conteudo: "" },
+    { pai: "#metodos_charCodeAt_h3", filho: "metodos_charCodeAt_h3_span", tag: "span", conteudo: `charCodeAt(index)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_charCodeAt_p1", tag: "p", conteudo: `Retorna o código do símbolo na posição que você escolher. Para símbolos mais complicados, ele mostra o código do primeiro pedaço.` },
+    { pai: "#metodos", filho: "metodos_charCodeAt_pre", tag: "pre", conteudo: "" },
+    { pai: "#metodos_charCodeAt_pre", filho: "metodos_charCodeAt_pre_code", tag: "code", conteudo: `let texto = 'A';\nconsole.log(texto.charCodeAt(0)); // 65` },
+
+    { pai: "#metodos", filho: "metodos_codePointAt_h3", tag: "h3", conteudo: "" },
+    { pai: "#metodos_codePointAt_h3", filho: "metodos_codePointAt_h3_span", tag: "span", conteudo: `codePointAt(index)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_codePointAt_p1", tag: "p", conteudo: `Retorna o código do símbolo de maneira mais precisa, especialmente para aqueles mais difíceis de representar (como emojis).` },
+    { pai: "#metodos", filho: "metodos_codePointAt_pre", tag: "pre", conteudo: "" },
+    { pai: "#metodos_codePointAt_pre", filho: "metodos_codePointAt_pre_code", tag: "code", conteudo: `let emoji = '😊';\nconsole.log(emoji.codePointAt(0)); // 128522` },
+
+    { pai: "#metodos", filho: "metodos_concat_h3", tag: "h3", conteudo: "" },
+    { pai: "#metodos_concat_h3", filho: "metodos_concat_h3_span", tag: "span", conteudo: `concat(str1, str2, ...)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_concat_p1", tag: "p", conteudo: `Cria uma nova string juntando as strings que você passar pra ela. Mas, geralmente, o <code>+</code> é mais simples de usar para juntar textos.` },
+    { pai: "#metodos", filho: "metodos_concat_pre", tag: "pre", conteudo: "" },
+    { pai: "#metodos_concat_pre", filho: "metodos_concat_pre_code", tag: "code", conteudo: `let texto1 = 'Olá ';\nlet texto2 = 'mundo!';\nconsole.log(texto1.concat(texto2)); // 'Olá mundo!'\n// Também funciona com:\nconsole.log(texto1 + texto2); // 'Olá mundo!'` },
+
+    { pai: "#metodos", filho: "metodos_slice_h3", tag: "h3", conteudo: "" },
+    { pai: "#metodos_slice_h3", filho: "metodos_slice_h3_span", tag: "span", conteudo: `slice(start, end)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_slice_p1", tag: "p", conteudo: `Corta a string e retorna uma nova, com a parte que você escolher. O final não entra. Se usar números negativos, ele começa a contar de trás pra frente.` },
+    { pai: "#metodos", filho: "metodos_slice_pre", tag: "pre", conteudo: "" },
+    { pai: "#metodos_slice_pre", filho: "metodos_slice_pre_code", tag: "code", conteudo: `let texto = 'JavaScript';\nconsole.log(texto.slice(0, 4)); // 'Java'\nconsole.log(texto.slice(4)); // 'Script'\nconsole.log(texto.slice(-6)); // 'Script'` },
+
+    { pai: "#metodos", filho: "metodos_substring_h3", tag: "h3", conteudo: "" },
+    { pai: "#metodos_substring_h3", filho: "metodos_substring_h3_span", tag: "span", conteudo: `substring(start, end)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_substring_p1", tag: "p", conteudo: `Funciona parecido com o <code>slice()</code>, mas não gosta de usar números negativos. Geralmente, <code>slice()</code> é a melhor opção.` },
+    { pai: "#metodos", filho: "metodos_substring_pre", tag: "pre", conteudo: "" },
+    { pai: "#metodos_substring_pre", filho: "metodos_substring_pre_code", tag: "code", conteudo: `let texto = 'JavaScript';\nconsole.log(texto.substring(0, 4)); // 'Java'` },
+
+    { pai: "#metodos", filho: "metodos_substr_h3", tag: "h3", conteudo: "" },
+    { pai: "#metodos_substr_h3", filho: "metodos_substr_h3_span", tag: "span", conteudo: `substr(start, length)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_substr_p1", tag: "p", conteudo: `Serve para cortar a string, começando em um ponto e pegando o número de caracteres que você especificar. Mas, esse método já está meio ultrapassado, então é melhor usar <code>slice()</code>.` },
+    { pai: "#metodos", filho: "metodos_substr_pre", tag: "pre", conteudo: "" },
+    { pai: "#metodos_substr_pre", filho: "metodos_substr_pre_code", tag: "code", conteudo: `let texto = 'JavaScript';\nconsole.log(texto.substr(0, 4)); // 'Java'` },
+
+    { pai: "#metodos", filho: "metodos_toUpperCase_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_toUpperCase_h3", filho: "metodos_toUpperCase_h3_span", tag: "span", conteudo: `toUpperCase()`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_toUpperCase_p1", tag: "p", conteudo: `Retorna uma nova string com todos os caracteres convertidos para maiúsculas.` },
+    { pai: "#metodos", filho: "metodos_toUpperCase_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_toUpperCase_pre", filho: "metodos_toUpperCase_pre_code", tag: "code", conteudo: `let texto = 'JavaScript';\nconsole.log(texto.toUpperCase()); // 'JAVASCRIPT'` },
+
+    { pai: "#metodos", filho: "metodos_toLowerCase_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_toLowerCase_h3", filho: "metodos_toLowerCase_h3_span", tag: "span", conteudo: `toLowerCase()`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_toLowerCase_p1", tag: "p", conteudo: `Retorna uma nova string com todos os caracteres convertidos para minúsculas.` },
+    { pai: "#metodos", filho: "metodos_toLowerCase_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_toLowerCase_pre", filho: "metodos_toLowerCase_pre_code", tag: "code", conteudo: `let texto = 'JavaScript';\nconsole.log(texto.toLowerCase()); // 'javascript'` },
+
+    { pai: "#metodos", filho: "metodos_trim_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_trim_h3", filho: "metodos_trim_h3_span", tag: "span", conteudo: `trim()`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_trim_p1", tag: "p", conteudo: `Retorna uma nova string com espaços em branco (espaços, tabulações, quebras de linha, etc.) removidos do início e do final da string.` },
+    { pai: "#metodos", filho: "metodos_trim_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_trim_pre", filho: "metodos_trim_pre_code", tag: "code", conteudo: `let texto = '  JavaScript  ';\nconsole.log(texto.trim()); // 'JavaScript'` },
+
+    { pai: "#metodos", filho: "metodos_startsWith_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_startsWith_h3", filho: "metodos_startsWith_h3_span", tag: "span", conteudo: `startsWith(searchString, position)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_startsWith_p1", tag: "p", conteudo: `Retorna um booleano indicando se a string começa com a searchString, opcionalmente a partir da position.` },
+    { pai: "#metodos", filho: "metodos_startsWith_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_startsWith_pre", filho: "metodos_startsWith_pre_code", tag: "code", conteudo: `let texto = 'JavaScript';\nconsole.log(texto.startsWith('Java')); // true\nconsole.log(texto.startsWith('Script', 4)); // true` },
+
+    { pai: "#metodos", filho: "metodos_endsWith_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_endsWith_h3", filho: "metodos_endsWith_h3_span", tag: "span", conteudo: `endsWith(searchString, length)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_endsWith_p1", tag: "p", conteudo: `Retorna um booleano indicando se a string termina com a searchString, opcionalmente até o length especificado.` },
+    { pai: "#metodos", filho: "metodos_endsWith_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_endsWith_pre", filho: "metodos_endsWith_pre_code", tag: "code", conteudo: `let texto = 'JavaScript';\nconsole.log(texto.endsWith('Script')); // true\nconsole.log(texto.endsWith('Java', 4)); // true` },
+
+    { pai: "#metodos", filho: "metodos_includes_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_includes_h3", filho: "metodos_includes_h3_span", tag: "span", conteudo: `includes(searchString, position)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_includes_p1", tag: "p", conteudo: `Retorna um booleano indicando se a string contém a searchString, opcionalmente a partir da position.` },
+    { pai: "#metodos", filho: "metodos_includes_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_includes_pre", filho: "metodos_includes_pre_code", tag: "code", conteudo: `let texto = 'JavaScript';\nconsole.log(texto.includes('Script')); // true\nconsole.log(texto.includes('Type')); // false` },
+
+    { pai: "#metodos", filho: "metodos_indexOf_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_indexOf_h3", filho: "metodos_indexOf_h3_span", tag: "span", conteudo: `indexOf(searchValue, fromIndex)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_indexOf_p1", tag: "p", conteudo: `Retorna o índice da primeira ocorrência de searchValue na string, ou -1 se não for encontrado. A busca começa em fromIndex (opcional).` },
+    { pai: "#metodos", filho: "metodos_indexOf_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_indexOf_pre", filho: "metodos_indexOf_pre_code", tag: "code", conteudo: `let texto = 'JavaScript';\nconsole.log(texto.indexOf('a')); // 1\nconsole.log(texto.indexOf('a', 2)); // 3` },
+
+    { pai: "#metodos", filho: "metodos_lastIndexOf_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_lastIndexOf_h3", filho: "metodos_lastIndexOf_h3_span", tag: "span", conteudo: `lastIndexOf(searchValue, fromIndex)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_lastIndexOf_p1", tag: "p", conteudo: `Retorna o índice da última ocorrência de searchValue na string, ou -1 se não for encontrado. A busca começa de trás para frente a partir de fromIndex (opcional).` },
+    { pai: "#metodos", filho: "metodos_lastIndexOf_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_lastIndexOf_pre", filho: "metodos_lastIndexOf_pre_code", tag: "code", conteudo: `let texto = 'JavaScript';\nconsole.log(texto.lastIndexOf('a')); // 3` },
+
+    { pai: "#metodos", filho: "metodos_replace_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_replace_h3", filho: "metodos_replace_h3_span", tag: "span", conteudo: `replace(searchValue, newValue)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_replace_p1", tag: "p", conteudo: `Retorna uma nova string com a primeira ocorrência de searchValue substituída por newValue. searchValue pode ser uma string ou uma expressão regular.` },
+    { pai: "#metodos", filho: "metodos_replace_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_replace_pre", filho: "metodos_replace_pre_code", tag: "code", conteudo: `let texto = 'JavaScript é incrível';\nconsole.log(texto.replace('incrível', 'fantástico')); // 'JavaScript é fantástico'` },
+
+    { pai: "#metodos", filho: "metodos_replaceAll_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_replaceAll_h3", filho: "metodos_replaceAll_h3_span", tag: "span", conteudo: `replaceAll(searchValue, newValue)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_replaceAll_p1", tag: "p", conteudo: `Retorna uma nova string com todas as ocorrências de searchValue substituídas por newValue. searchValue pode ser uma string ou uma expressão regular.` },
+    { pai: "#metodos", filho: "metodos_replaceAll_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_replaceAll_pre", filho: "metodos_replaceAll_pre_code", tag: "code", conteudo: `let texto = 'maçã, banana, maçã';\nconsole.log(texto.replaceAll('maçã', 'laranja')); // 'laranja, banana, laranja'` },
+
+    { pai: "#metodos", filho: "metodos_split_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_split_h3", filho: "metodos_split_h3_span", tag: "span", conteudo: `split(separator, limit)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_split_p1", tag: "p", conteudo: `Divide a string em um array de substrings, usando o separator especificado. O limit opcional especifica o número máximo de divisões.` },
+    { pai: "#metodos", filho: "metodos_split_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_split_pre", filho: "metodos_split_pre_code", tag: "code", conteudo: `let texto = 'maçã,banana,laranja';\nconsole.log(texto.split(',')); // ['maçã', 'banana', 'laranja']\nconsole.log(texto.split(',', 2)); // ['maçã', 'banana']` },
+
+    { pai: "#metodos", filho: "metodos_padStart_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_padStart_h3", filho: "metodos_padStart_h3_span", tag: "span", conteudo: `padStart(targetLength, padString)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_padStart_p1", tag: "p", conteudo: `Preenche o início da string com padString até atingir o targetLength.` },
+    { pai: "#metodos", filho: "metodos_padStart_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_padStart_pre", filho: "metodos_padStart_pre_code", tag: "code", conteudo: `let texto = '5';\nconsole.log(texto.padStart(3, '0')); // '005'` },
+
+    { pai: "#metodos", filho: "metodos_padEnd_h3", tag: "h3", conteudo: `` },
+    { pai: "#metodos_padEnd_h3", filho: "metodos_padEnd_h3_span", tag: "span", conteudo: `padEnd(targetLength, padString)`, classe: "method-name" },
+    { pai: "#metodos", filho: "metodos_padEnd_p1", tag: "p", conteudo: `Preenche o final da string com padString até atingir o targetLength.` },
+    { pai: "#metodos", filho: "metodos_padEnd_pre", tag: "pre", conteudo: `` },
+    { pai: "#metodos_padEnd_pre", filho: "metodos_padEnd_pre_code", tag: "code", conteudo: `let texto = '5';\nconsole.log(texto.padEnd(3, '0')); // '500'` },
+
+    { pai: "#container", filho: "regex-methods", tag: "section", conteudo: "" },
+    { pai: "#regex-methods", filho: "regex_methods_h2", tag: "h2", conteudo: "Métodos com Expressões Regulares" },
+
+    { pai: "#regex-methods", filho: "regex_match", tag: "div", conteudo: "", classe: "method-container" },
+    { pai: "#regex_match", filho: "regex_match_h3", tag: "h3", conteudo: `` },
+    { pai: "#regex_match", filho: "regex_match_h3_span", tag: "span", conteudo: `match(regexp)`, classe: "method-name" },
+    { pai: "#regex_match", filho: "regex_match_p", tag: "p", conteudo: "Retorna um array contendo os resultados da correspondência da expressão regular na string, ou null se não houver correspondência." },
+    { pai: "#regex_match", filho: "regex_match_pre", tag: "pre", conteudo: "" },
+    {
+      pai: "#regex_match_pre", filho: "regex_match_code", tag: "code", conteudo: `
+let texto = "O JavaScript é uma linguagem de programação incrível!";
+console.log(texto.match(/[a-z]+/gi)); // ["O", "JavaScript", "é", "uma", "linguagem", "de", "programação", "incrível"]
+` },
+
+    { pai: "#regex-methods", filho: "regex_matchAll", tag: "div", conteudo: "", classe: "method-container" },
+    { pai: "#regex_matchAll", filho: "regex_matchAll_h3", tag: "h3", conteudo: `` },
+    { pai: "#regex_matchAll_h3", filho: "regex_matchAll_h3_span", tag: "span", conteudo: `matchAll(regexp)`, classe: "method-name" },
+
+    { pai: "#regex_matchAll", filho: "regex_matchAll_p", tag: "p", conteudo: "Retorna um iterador de todos os resultados da correspondência da expressão regular na string. Útil para obter todas as correspondências, especialmente com grupos de captura." },
+    { pai: "#regex_matchAll", filho: "regex_matchAll_pre", tag: "pre", conteudo: "" },
+    {
+      pai: "#regex_matchAll_pre", filho: "regex_matchAll_code", tag: "code", conteudo: `
+let texto = "teste1 teste2 teste3";
+let regexp = /teste(\\d)/g;
+let matches = [...texto.matchAll(regexp)];
+console.log(matches); // Array de correspondências com detalhes dos grupos
+  `},
+
+    { pai: "#regex-methods", filho: "regex_search", tag: "div", conteudo: "", classe: "method-container" },
+    { pai: "#regex_search", filho: "regex_search_h3", tag: "h3", conteudo: `` },
+    { pai: "#regex_search_h3", filho: "regex_search_h3_span", tag: "span", conteudo: `search(regexp)`, classe: "method-name" },
+
+    { pai: "#regex_search", filho: "regex_search_p", tag: "p", conteudo: "Retorna o índice da primeira correspondência da expressão regular na string, ou -1 se não houver correspondência." },
+    { pai: "#regex_search", filho: "regex_search_pre", tag: "pre", conteudo: "" },
+    {
+      pai: "#regex_search_pre", filho: "regex_search_code", tag: "code", conteudo: `
+let texto = "JavaScript é incrível";
+console.log(texto.search(/incrível/)); // 14
+  `},
+
+    { pai: "#container", filho: "coercao", tag: "section", conteudo: "" },
+    { pai: "#coercao", filho: "coercao_h2", tag: "h2", conteudo: "Coerção de Tipo" },
+    { pai: "#coercao", filho: "coercao_p", tag: "p", conteudo: "JavaScript frequentemente realiza coerção de tipo implícita entre strings e outros tipos de dados. Por exemplo, ao usar o operador + com uma string e outro tipo, o outro tipo geralmente é convertido para string:" },
+    { pai: "#coercao", filho: "coercao_pre", tag: "pre", conteudo: "" },
+    {
+      pai: "#coercao_pre", filho: "coercao_code", tag: "code", conteudo: `
+console.log("5" + 2); // "52" (o número 2 é convertido para string)
+console.log(2 + "5"); // "25" (mesmo comportamento)
+console.log("5" - 2); // 3 (a string "5" é convertida para número)
+console.log("5" * "2"); // 10 (ambas as strings são convertidas para números)
+  `},
+    { pai: "#coercao", filho: "coercao_alert", tag: "div", conteudo: "", classe: "alert tip" },
+    { pai: "#coercao_alert", filho: "coercao_alert_p", tag: "p", conteudo: 'Para conversões explícitas, você pode usar funções como <code>Number()</code>, <code>String()</code>, <code>parseInt()</code> ou o operador unário <code>+</code>.' },
+
+    { pai: "#container", filho: "performance", tag: "section", conteudo: "" },
+    { pai: "#performance", filho: "performance_h2", tag: "h2", conteudo: "Performance" },
+    { pai: "#performance", filho: "performance_p", tag: "p", conteudo: "Devido à imutabilidade das strings, operações que parecem modificar strings (como concatenação repetida dentro de um loop usando +) podem ser ineficientes, pois criam muitas strings intermediárias. Em cenários de manipulação intensiva de strings, é geralmente mais eficiente usar métodos como Array.prototype.join() após manipular as partes da string em um array." },
+    { pai: "#performance", filho: "performance_h3", tag: "h3", conteudo: "Exemplo de problema de performance" },
+    { pai: "#performance", filho: "performance_pre", tag: "pre", conteudo: "" },
+    {
+      pai: "#performance_pre", filho: "performance_code", tag: "code", conteudo: `
+  // Ineficiente para grandes números de iterações
+  let resultado = "";
+  for (let i = 0; i < 10000; i++) {
+    resultado += "algum texto"; // Cria uma nova string a cada iteração
+  }
+  
+  // Mais eficiente
+  let partes = [];
+  for (let i = 0; i < 10000; i++) {
+    partes.push("algum texto");
+  }
+  let resultado = partes.join(""); // Cria apenas uma string no final
+  `},
+    { pai: "#container", filho: "seguranca", tag: "section", conteudo: "" },
+    { pai: "#seguranca", filho: "seguranca_h2", tag: "h2", conteudo: "Considerações de Segurança" },
+    { pai: "#seguranca", filho: "seguranca_p1", tag: "p", conteudo: "Ao lidar com strings que vêm de fontes externas (como entrada do usuário), é crucial tomar precauções de segurança para evitar vulnerabilidades como Cross-Site Scripting (XSS). Isso pode envolver a sanitização ou codificação da entrada para garantir que ela seja tratada como texto e não como código executável." },
+    { pai: "#seguranca", filho: "seguranca_div_alert", tag: "div", conteudo: "", attrs: { class: "alert danger" } },
+    { pai: "#seguranca_div_alert", filho: "seguranca_h3_alert", tag: "h3", conteudo: "Exemplo de risco de XSS" },
+    { pai: "#seguranca_div_alert", filho: "seguranca_pre_alert", tag: "pre", conteudo: "" },
+    {
+      pai: "#seguranca_pre_alert", filho: "seguranca_code_alert", tag: "code", conteudo: `
+  // Dado malicioso (simulando entrada de usuário)
+  const userInput = '< i m g src=x onerror="roubarDados()">';
+  
+  // ⚠️ Risco de XSS, independente do método de concatenação:
+  const str1 = "Olá, " + userInput; 
+  
+  element.innerHTML = str1; // Executará o script malicioso!
+  `
+    },
+
+    { pai: "#seguranca", filho: "seguranca_h3_sanitizacao", tag: "h3", conteudo: "Sanitização/Codificação de Dados" },
+    { pai: "#seguranca", filho: "seguranca_p2", tag: "p", conteudo: "Use bibliotecas como DOMPurify para remover código executável de strings:" },
+    { pai: "#seguranca", filho: "seguranca_pre1", tag: "pre", conteudo: "" },
+    {
+      pai: "#seguranca_pre1", filho: "seguranca_code1", tag: "code", conteudo: `
+  import DOMPurify from 'dompurify';
+  const safeInput = DOMPurify.sanitize(userInput); // Remove scripts!
+  const safeStr = ["Olá, ", safeInput].join("");
+  `
+    },
+
+    { pai: "#seguranca", filho: "seguranca_p3", tag: "p", conteudo: "Para contextos não HTML (como URLs ou atributos), use funções de codificação:" },
+    { pai: "#seguranca", filho: "seguranca_pre2", tag: "pre", conteudo: "" },
+    {
+      pai: "#seguranca_pre2", filho: "seguranca_code2", tag: "code", conteudo: `
+  // Codificar para HTML:
+  const encodedHTML = userInput.replace(/&/g, '&amp;').replace(/<"/g, '&lt;');
+  // Codificar para URLs:
+  const encodedURL = encodeURIComponent(userInput);
+  `
+    },
+    { pai: "#seguranca", filho: "seguranca_h3_textcontent", tag: "h3", conteudo: "Evite innerHTML quando possível" },
+    { pai: "#seguranca", filho: "seguranca_p4", tag: "p", conteudo: "Prefira métodos seguros como textContent para inserir dados não confiáveis:" },
+    { pai: "#seguranca", filho: "seguranca_pre3", tag: "pre", conteudo: "" },
+    { pai: "#seguranca_pre3", filho: "seguranca_code3", tag: "code", conteudo: `element.textContent = userInput; // Seguro: trata tudo como texto!` }
+
+  ]
+
+}
+
+function criar(pai, filho, tag, conteudo = "", classe = "") {
+  const el = document.createElement(tag);
+  if (classe != "") {
+    let classes = classe.split(" ")
+    for (let i = 0; i < classes.length; i++) {
+      el.classList.add(classes[i])
+    }
+  }
+  el.id = filho;
+  el.innerHTML = conteudo;
+  document.querySelector(pai).appendChild(el);
+}
+let lista = string.tecnica
+for (let i = 0; i < lista.length; i++) {
+  let { pai, filho, tag, conteudo, classe } = lista[i];
+  criar(pai, filho, tag, conteudo, classe);
+}
+  </script>
+</body>
+</html>

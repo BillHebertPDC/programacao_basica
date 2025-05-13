@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number em JavaScript - Guia Completo</title>
+  <style>
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #2c3e50;
+      --accent-color: #e74c3c;
+      --background-color: #f9f9f9;
+      --code-background: #f5f5f5;
+      --text-color: #333;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--background-color);
+      padding: 0;
+    }
+    
+    header {
+      background-color: var(--primary-color);
+      color: white;
+      text-align: center;
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+    
+    section {
+      margin-bottom: 3rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+    }
+    
+    h2 {
+      color: var(--secondary-color);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary-color);
+    }
+    
+    h3 {
+      color: var(--secondary-color);
+      margin: 1.5rem 0 1rem;
+    }
+    
+    p {
+      margin-bottom: 1rem;
+    }
+    
+    code {
+      font-family: 'Consolas', 'Monaco', monospace;
+      background-color: var(--code-background);
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.9rem;
+    }
+    
+    pre {
+      background-color: var(--code-background);
+      padding: 1rem;
+      border-radius: 5px;
+      overflow-x: auto;
+      margin: 1rem 0;
+      border-left: 4px solid var(--primary-color);
+    }
+    
+    pre code {
+      background-color: transparent;
+      padding: 0;
+      font-size: 0.95rem;
+    }
+    
+    .method-container {
+      margin-bottom: 1.5rem;
+    }
+    
+    .method-name {
+      color: var(--accent-color);
+      font-weight: bold;
+    }
+    
+    .alert {
+      background-color: #fff3cd;
+      color: #856404;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 5px;
+      border-left: 4px solid #ffc107;
+    }
+    
+    .danger {
+      background-color: #f8d7da;
+      color: #721c24;
+      border-left-color: #dc3545;
+    }
+    
+    .tip {
+      background-color: #d4edda;
+      color: #155724;
+      border-left-color: #28a745;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    th {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    
+    .top-button {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s;
+    }
+    
+    .top-button:hover {
+      background-color: var(--secondary-color);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Number em JavaScript</h1>
+    <p class="subtitle">Um guia completo sobre manipulação de Number em JavaScript</p>
+  </header>
+
+  <div class="container" id="container">
+  </div>
+  <button class="top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+  <script>
+    let string = {
+  tecnico: [
+    { pai: "#container", filho: "introducao", tag: "section", conteudo: "" , classe:""},
+    { pai: "#introducao", filho: "introducao_h2", tag: "h2", conteudo: "Introdução" },
+    { pai: "#introducao", filho: "introducao_p1", tag: "p", conteudo: "O tipo boolean em JavaScript é um tipo primitivo que representa um valor lógico, com dois possíveis estados: <code>true</code> e <code>false</code>" },
+    { pai: "#container", filho: "coercao", tag: "section", conteudo: "" },
+    { pai: "#coercao", filho: "coercao_h2", tag: "h2", conteudo: "coerção" },
+    { pai: "#coercao", filho: "coercao_p1", tag: "p", conteudo: "JavaScript possui coerção implícita de tipos. O motor (ECMAScript Spec, ToBoolean operation)" },
+    { pai: "#coercao", filho: "coercao_pre_1", tag: "pre", conteudo: "" },
+    { pai: "#coercao_pre_1", filho: "coercao_pre_h3_1", tag: "h3", conteudo: "Valores falsy" },
+    { pai: "#coercao_pre_1", filho: "coercao_code", tag: "code", conteudo: `false 0 -0 0n "" '' \`\` null undefined NaN ` },
+    { pai: "#coercao_pre_1", filho: "coercao_pre_h3_2", tag: "h3", conteudo: "Valores truthy" },
+    { pai: "#coercao_pre_1", filho: "coercao_code", tag: "code", conteudo: `[] {} function(){} "0" "false" new Boolean(false)` },
+    { pai: "#coercao", filho: "coercao_alert", tag: "div", conteudo: "", classe:"alert" },
+    { pai: "#coercao_alert", filho: "coercao_alert_p", tag: "p", conteudo: `
+    Isso tem consequências diretas em:
+    <code>if</code>, <code>while</code>, <code>for</code>, <code>?:</code>, <code>&&</code>, <code>||</code>
+    Comparações implícitas
+
+    alem de todo objeto ao ser transformado em boolean é truthy
+
+    Boolean(false) // false
+    new Boolean(false) // [Boolean: false], mas é truthy
+
+    alem de ter que ficar com muita atenção sobre o que é truthy e falsy
+
+    if ("false") console.log("executa"); // string não vazia = truthy
+
+    if ([]) console.log("executa"); // arrays são truthy, mesmo vazios
+
+
+    ` },
+    { pai: "#coercao", filho: "coercao_p2", tag: "p", conteudo: `
+    A operação ToBoolean faz parte do Abstract Operations do ECMAScript. Implementada por:
+    Boolean() (explicitamente)
+    Coerção implícita via estruturas de controle
+    ` },
+    { pai: "#coercao", filho: "coercao_pre_2", tag: "pre", conteudo: "" },
+    { pai: "#coercao_pre_2", filho: "coercao_pre_2_code", tag: "code", conteudo: `!!"abc" === Boolean("abc"); // true` },
+    { pai: "#coercao", filho: "coercao_alert_1", tag: "div", conteudo: "", classe:"alert" },
+    { pai: "#coercao_alert_1", filho: "coercao_alert_1_p", tag: "p", conteudo: `
+O operador !! é um hack idiomático para forçar coerção para booleano.
+    ` },
+    { pai: "#container", filho: "operadores", tag: "section", conteudo: "" },
+    { pai: "#operadores", filho: "operadores_h2", tag: "h2", conteudo: "Operadores booleanos" },
+    { pai: "#operadores", filho: "operadores_h3_1", tag: "h3", conteudo: "Comparadores" },
+    { pai: "#operadores", filho: "operadores_p1", tag: "p", conteudo: "<code>==</code>, <code>===</code>, <code>!=</code>, <code>!==</code>" },
+    { pai: "#operadores", filho: "operadores_h3_1", tag: "h3", conteudo: "Lógico" },
+    { pai: "#operadores", filho: "operadores_p1", tag: "p", conteudo: `<code>!</code> (NOT), <code>&&</code> (AND), <code>||</code> (OR), <code>??</code> (nullish coalescing)
+    ` },
+
+    { pai: "#operadores", filho: "operadores_alert", tag: "div", conteudo: "", classe:"alert" },
+    { pai: "#operadores_alert", filho: "operadores_alert_p", tag: "p", conteudo: `
+    
+    Isso tem consequências diretas em:
+    <code>if</code>, <code>while</code>, <code>for</code>, <code>?:</code>, <code>&&</code>, <code>||</code>
+    Comparações implícitas
+    ` },
+    { pai: "#container", filho: "boxed", tag: "section", conteudo: "" },
+    { pai: "#boxed", filho: "boxed_alert", tag: "div", conteudo: "", classe:"alert" },
+    { pai: "#boxed_alert", filho: "boxed_alert_p", tag: "p", conteudo: `
+    Boolean.prototype.myProp = 123;
+    console.log((true).myProp); // 123
+
+    ` },
+    /*
+    */
+
+],
+  nao_tecnico:[
+
+]
+
+}
+function validar_array(array1,campo){
+  for(let valor in array1){
+    for(let valor2 in array1){
+      if(valor != valor2 && array1[valor][campo] == array1[valor2][campo]){
+        console.log(array1[valor][campo])
+      }
+    }
+  }
+}
+validar_array(string.nao_tecnico,"filho")
+
+function criar(pai, filho, tag, conteudo = "", classe = "") {
+  const el = document.createElement(tag);
+  if (classe != "") {
+    let classes = classe.split(" ")
+    for (let i = 0; i < classes.length; i++) {
+      el.classList.add(classes[i])
+    }
+  }
+  el.id = filho;
+  el.innerHTML = conteudo;
+  console.log(document.querySelector(pai))
+  document.querySelector(pai).appendChild(el);
+}
+let lista = string.tecnico
+for (let i = 0; i < lista.length; i++) {
+  let { pai, filho, tag, conteudo, classe } = lista[i];
+  criar(pai, filho, tag, conteudo, classe);
+}
+
+  </script>
+</body>
+</html>
