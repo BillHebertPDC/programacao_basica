@@ -1,24 +1,4 @@
-/*
-{
-    searchs: [],
-    tags: [],
-    duration: 0,
-    feedback: {
-      dislike: 0,
-      like: 0
-    },
-    examples: [],
-    files: {
-      audio: "",
-      video:"",
-      quiz:""
-    },
-    index: 0,
-    structure_html: [
-
-    ]
-  },
-  */
+import { Titulos, Textos, Codigos } from "./teste_js.js"
 let itens = [
   // boolean
   {
@@ -37,9 +17,9 @@ let itens = [
     },
     index: 0,
     structure_html: [
-      { pai: "#container", filho: "introducao_boolean", tag: "section", conteudo: "", classe: "" },
-      { pai: "#introducao_boolean", filho: "introducao_boolean_h2", tag: "h2", conteudo: "Introdução" },
-      { pai: "#introducao_boolean", filho: "introducao_boolean_p1", tag: "p", conteudo: "O tipo boolean em JavaScript é um tipo primitivo que representa um valor lógico, com dois possíveis estados: <code>true</code> e <code>false</code>" },
+      { filho: "introducao_boolean", tag: "section" },
+      { pai: "#introducao_boolean", filho: "introducao_boolean_h2", tag: "h2", conteudo: Titulos.Introdução },
+      { pai: "#introducao_boolean", filho: "introducao_boolean_p1", tag: "p", conteudo: Textos },
     ]
   },
   {
@@ -58,47 +38,23 @@ let itens = [
     },
     index: 0,
     structure_html: [
-      { pai: "#container", filho: "coercao_boolean", tag: "section", conteudo: "" },
-      { pai: "#coercao_boolean", filho: "coercao_boolean_h2", tag: "h2", conteudo: "coerção" },
-      { pai: "#coercao_boolean", filho: "coercao_boolean_p1", tag: "p", conteudo: "JavaScript possui coerção implícita de tipos. O motor (ECMAScript Spec, ToBoolean operation)" },
-      { pai: "#coercao_boolean", filho: "coercao_boolean_pre_1", tag: "pre", conteudo: "" },
-      { pai: "#coercao_boolean_pre_1", filho: "coercao_boolean_pre_h3_1", tag: "h3", conteudo: "Valores falsy" },
-      { pai: "#coercao_boolean_pre_1", filho: "coercao_boolean_code1", tag: "code", conteudo: `false 0 -0 0n "" '' \`\` null undefined NaN ` },
-      { pai: "#coercao_boolean_pre_1", filho: "coercao_boolean_pre_h3_2", tag: "h3", conteudo: "Valores truthy" },
-      { pai: "#coercao_boolean_pre_1", filho: "coercao_boolean_code2", tag: "code", conteudo: `[] {} function(){} "0" "false" new Boolean(false)` },
-      { pai: "#coercao_boolean", filho: "coercao_boolean_alert", tag: "div", conteudo: "", classe: "alert" },
-      {
-        pai: "#coercao_boolean_alert", filho: "coercao_boolean_alert_p", tag: "p", conteudo: `
-        Isso tem consequências diretas em:
-        <code>if</code>, <code>while</code>, <code>for</code>, <code>?:</code>, <code>&&</code>, <code>||</code>
-        Comparações implícitas
-    
-        alem de todo objeto ao ser transformado em boolean é truthy
-    
-        Boolean(false) // false
-        new Boolean(false) // [Boolean: false], mas é truthy
-    
-        alem de ter que ficar com muita atenção sobre o que é truthy e falsy
-    
-        if ("false") console.log("executa"); // string não vazia = truthy
-    
-        if ([]) console.log("executa"); // arrays são truthy, mesmo vazios
-    
-    
-        ` },
-      {
-        pai: "#coercao_boolean", filho: "coercao_boolean_p2", tag: "p", conteudo: `
-        A operação ToBoolean faz parte do Abstract Operations do ECMAScript. Implementada por:
-        Boolean() (explicitamente)
-        Coerção implícita via estruturas de controle
-        ` },
-      { pai: "#coercao_boolean", filho: "coercao_boolean_pre_2", tag: "pre", conteudo: "" },
-      { pai: "#coercao_boolean_pre_2", filho: "coercao_boolean_pre_2_code", tag: "code", conteudo: `!!"abc" === Boolean("abc"); // true` },
-      { pai: "#coercao_boolean", filho: "coercao_boolean_alert_1", tag: "div", conteudo: "", classe: "alert" },
-      {
-        pai: "#coercao_boolean_alert_1", filho: "coercao_boolean_alert_1_p", tag: "p", conteudo: `
-    O operador !! é um hack idiomático para forçar coerção para booleano.
-        ` },
+      { filho: "coercao_boolean", tag: "section" },
+      { pai: "#coercao_boolean", filho: "coercao_boolean_h2", tag: "h2", conteudo: Titulos.coercao },
+      { pai: "#coercao_boolean", filho: "coercao_boolean_p1", tag: "p", conteudo: Textos[1] },
+      { pai: "#coercao_boolean", filho: "coercao_boolean_pre_1", tag: "pre" },
+      { pai: "#coercao_boolean_pre_1", filho: "coercao_boolean_pre_h3_1", tag: "h3", conteudo: Titulos.valoresFalsy },
+      { pai: "#coercao_boolean_pre_1", filho: "coercao_boolean_code1", tag: "code", conteudo: Codigos[0] },
+      { pai: "#coercao_boolean_pre_1", filho: "coercao_boolean_pre_h3_2", tag: "h3", conteudo: Titulos.valoresTruthy },
+      { pai: "#coercao_boolean_pre_1", filho: "coercao_boolean_code2", tag: "code", conteudo: Codigos[1] },
+      { pai: "#coercao_boolean", filho: "coercao_boolean_alert", tag: "div", classe: "alert" },
+      { pai: "#coercao_boolean_alert", filho: "coercao_boolean_alert_p", tag: "p", conteudo: Textos[2] },
+      { pai: "#coercao_boolean_alert", filho: "coercao_boolean_alert_pre", tag: "pre", conteudo: `` },
+      { pai: "#coercao_boolean_alert_pre", filho: "coercao_boolean_alert_pre_code", tag: "code", conteudo: Codigos[2] },
+      { pai: "#coercao_boolean", filho: "coercao_boolean_p2", tag: "p", conteudo: Textos[3] },
+      { pai: "#coercao_boolean", filho: "coercao_boolean_pre_2", tag: "pre" },
+      { pai: "#coercao_boolean_pre_2", filho: "coercao_boolean_pre_2_code", tag: "code", conteudo: Codigos[3] },
+      { pai: "#coercao_boolean", filho: "coercao_boolean_alert_1", tag: "div", classe: "alert" },
+      { pai: "#coercao_boolean_alert_1", filho: "coercao_boolean_alert_1_p", tag: "p", conteudo: Textos[4] },
     ]
   },
   {
@@ -117,23 +73,15 @@ let itens = [
     },
     index: 0,
     structure_html: [
-      { pai: "#container", filho: "operadores", tag: "section", conteudo: "" },
-      { pai: "#operadores", filho: "operadores_h2", tag: "h2", conteudo: "Operadores booleanos" },
-      { pai: "#operadores", filho: "operadores_h3_1", tag: "h3", conteudo: "Comparadores" },
-      { pai: "#operadores", filho: "operadores_p1", tag: "p", conteudo: "<code>==</code>, <code>===</code>, <code>!=</code>, <code>!==</code>" },
-      { pai: "#operadores", filho: "operadores_h3_2", tag: "h3", conteudo: "Lógico" },
-      {
-        pai: "#operadores", filho: "operadores_p2", tag: "p", conteudo: `<code>!</code> (NOT), <code>&&</code> (AND), <code>||</code> (OR), <code>??</code> (nullish coalescing)
-        ` },
-
-      { pai: "#operadores", filho: "operadores_alert", tag: "div", conteudo: "", classe: "alert" },
-      {
-        pai: "#operadores_alert", filho: "operadores_alert_p", tag: "p", conteudo: `
-        
-        Isso tem consequências diretas em:
-        <code>if</code>, <code>while</code>, <code>for</code>, <code>?:</code>, <code>&&</code>, <code>||</code>
-        Comparações implícitas
-        ` },
+      { filho: "operadores", tag: "section" },
+      { pai: "#operadores", filho: "operadores_h2", tag: "h2", conteudo: Titulos.operadoresBooleanos },
+      { pai: "#operadores", filho: "operadores_h3_1", tag: "h3", conteudo: Titulos.comparadores },
+      { pai: "#operadores", filho: "operadores_p1", tag: "p", conteudo: Textos[5] },
+      { pai: "#operadores", filho: "operadores_h3_2", tag: "h3", conteudo: Titulos.logico },
+      { pai: "#operadores", filho: "operadores_pre", tag: "pre" },
+      { pai: "#operadores_pre", filho: "operadores_pre_code", tag: "code", conteudo: Codigos[4] },
+      { pai: "#operadores", filho: "operadores_alert", tag: "div", classe: "alert" },
+      { pai: "#operadores_alert", filho: "operadores_alert_p", tag: "p", conteudo: Textos[6] },
     ]
   },
   {
@@ -152,14 +100,11 @@ let itens = [
     },
     index: 0,
     structure_html: [
-      { pai: "#container", filho: "boxed", tag: "section", conteudo: "" },
-      { pai: "#boxed", filho: "boxed_alert", tag: "div", conteudo: "", classe: "alert" },
-      {
-        pai: "#boxed_alert", filho: "boxed_alert_p", tag: "p", conteudo: `
-        Boolean.prototype.myProp = 123;
-        console.log((true).myProp); // 123
-    
-        ` },
+      { filho: "boxed", tag: "section" },
+      { pai: "#boxed", filho: "boxed_h2", tag: "h2", conteudo: Titulos.boxed },
+      { pai: "#boxed", filho: "boxed_alert", tag: "div", classe: "alert" },
+      { pai: "#boxed_alert", filho: "boxed_alert_pre", tag: "pre" },
+      { pai: "#boxed_alert_pre", filho: "boxed_alert_pre_code", tag: "code", conteudo: Codigos[6] }
     ]
   },
   // null
@@ -179,22 +124,15 @@ let itens = [
     },
     index: 0,
     structure_html: [
-      { pai: "#container", filho: "introducao_null", tag: "section", conteudo: "", classe: "" },
-      { pai: "#introducao_null", filho: "introducao_null_h2", tag: "h2", conteudo: "Introdução" },
+      { filho: "introducao_null", tag: "section" },
+      { pai: "#introducao_null", filho: "introducao_null_h2", tag: "h2", conteudo: Titulos.Introdução },
       {
-        pai: "#introducao_null", filho: "introducao_null_p1", tag: "p", conteudo: `
-        null é um primitivo em JavaScript que representa a ausência intencional de valor.
-        null em JavaScript não representa "vazio genérico", mas uma ausência de valor proposital e explícita, usada com intenção clara — diferente de undefined, que tende a surgir de forma implícita. Compreender suas nuances é fundamental para evitar bugs sutis e escrever código semântico e robusto.
-        ` },
-      { pai: "#introducao_null", filho: "limites_div_alert", tag: "div", conteudo: "", classe: "alert" },
+        pai: "#introducao_null", filho: "introducao_null_p1", tag: "p", conteudo: Textos },
+      { pai: "#introducao_null", filho: "limites_div_alert", tag: "div", classe: "alert" },
       { pai: "#limites_div_alert", filho: "limites_div_alert_h3", tag: "h3", conteudo: "bug histórico" },
-      { pai: "#limites_div_alert", filho: "limites_div_alert_pre", tag: "pre", conteudo: "" },
+      { pai: "#limites_div_alert", filho: "limites_div_alert_pre", tag: "pre" },
       {
-        pai: "#limites_div_alert_pre", filho: "limites_div_alert_code", tag: "code", conteudo: `
-        typeof null // "object" (bug histórico da linguagem)
-        // Bug legado do início da linguagem:
-        // null é representado internamente como 0x00, o que, em comparação binária, é interpretado como um tipo "object"
-     ` },
+        pai: "#limites_div_alert_pre", filho: "limites_div_alert_code", tag: "code", conteudo: Textos},
     ]
   },
   {
@@ -213,27 +151,15 @@ let itens = [
     },
     index: 0,
     structure_html: [
-      { pai: "#container", filho: "null_vs_undefined", tag: "section", conteudo: "", classe: "" },
-      { pai: "#null_vs_undefined", filho: "null_vs_undefined_h2", tag: "h2", conteudo: "Diferença entre null e undefined" },
-      { pai: "#null_vs_undefined", filho: "null_vs_undefined_pre", tag: "pre", conteudo: "" },
+      { filho: "null_vs_undefined", tag: "section" },
+      { pai: "#null_vs_undefined", filho: "null_vs_undefined_h2", tag: "h2", conteudo: Titulos },
+      { pai: "#null_vs_undefined", filho: "null_vs_undefined_p", tag: "p", conteudo: Textos },
+      { pai: "#null_vs_undefined", filho: "null_vs_undefined_pre", tag: "pre" },
       {
-        pai: "#null_vs_undefined_pre", filho: "null_vs_undefined_pre_code", tag: "code", conteudo: `
-    let x;
-    console.log(x); // undefined / Ausência de valor não atribuída / Variável não inicializada, argumento omitido / tipo: undefined
-    
-    let y = null;
-    console.log(y); // null / Ausência de valor explicitamente atribuída / Reset manual de referência, campo vazio / tipo: object (bug)
-    
-    
-    null == undefined   // true  (coerção implícita)
-    null === undefined  // false (sem coerção)
-    
-    null == false       // false
-    null == 0           // false
-    null == ''          // false
-        ` },
+        pai: "#null_vs_undefined_pre", filho: "null_vs_undefined_pre_code", tag: "code", conteudo: Codigos },
     ]
   },
+  //
   {
     searchs: [],
     tags: [],
@@ -250,10 +176,10 @@ let itens = [
     },
     index: 0,
     structure_html: [
-      { pai: "#container", filho: "conversao", tag: "section", conteudo: "", classe: "" },
-      { pai: "#conversao", filho: "conversao_h2", tag: "h2", conteudo: "Conversões" },
+      { filho: "conversao", tag: "section" },
+      { pai: "#conversao", filho: "conversao_h2", tag: "h2", conteudo: Titulos },
       { pai: "#conversao", filho: "conversao_p", tag: "p", conteudo: " Pitfalls em operações com null" },
-      { pai: "#conversao", filho: "conversao_pre", tag: "pre", conteudo: "" },
+      { pai: "#conversao", filho: "conversao_pre", tag: "pre" },
       {
         pai: "#conversao_pre", filho: "conversao_pre_code", tag: "code", conteudo: `
     Boolean(null) // false
@@ -295,10 +221,10 @@ let itens = [
     },
     index: 0,
     structure_html: [
-      { pai: "#container", filho: "propriedade_null", tag: "section", conteudo: "", classe: "" },
+      { filho: "propriedade_null", tag: "section" },
       { pai: "#propriedade_null", filho: "propriedade_null_h2", tag: "h2", conteudo: "Propriedade_null" },
       { pai: "#propriedade_null", filho: "propriedade_null_p1", tag: "p", conteudo: "Valores null não ativam default na desestruturação. Somente undefined ativa. Mas null é um valor explícito; diferente de um \"hole\"." },
-      { pai: "#propriedade_null", filho: "propriedade_null_pre", tag: "pre", conteudo: "" },
+      { pai: "#propriedade_null", filho: "propriedade_null_pre", tag: "pre" },
       {
         pai: "#propriedade_null_pre", filho: "propriedade_null_pre_code", tag: "code", conteudo: `
     let { a = 1 } = { a: null };
@@ -331,14 +257,14 @@ let itens = [
     },
     index: 0,
     structure_html: [
-      { pai: "#container", filho: "comparacao", tag: "section", conteudo: "", classe: "" },
+      { filho: "comparacao", tag: "section" },
       { pai: "#comparacao", filho: "comparacao_h2", tag: "h2", conteudo: "comparacao" },
       {
         pai: "#comparacao", filho: "comparacao_p1", tag: "p", conteudo: `
     <code>||</code> e <code>&&</code> avaliam falsy/truthy.
     <code>??</code> (nullish coalescing) só trata null e undefined.
         ` },
-      { pai: "#comparacao", filho: "comparacao_pre", tag: "pre", conteudo: "" },
+      { pai: "#comparacao", filho: "comparacao_pre", tag: "pre" },
       {
         pai: "#comparacao_pre", filho: "comparacao_pre_code", tag: "code", conteudo: `
     null || 'default'    // 'default'
@@ -353,7 +279,7 @@ let itens = [
     ]
   },
   // number
-      {
+  {
     searchs: [],
     tags: [],
     duration: 0,
@@ -364,17 +290,17 @@ let itens = [
     examples: [],
     files: {
       audio: "",
-      video:"",
-      quiz:""
+      video: "",
+      quiz: ""
     },
     index: 0,
     structure_html: [
-      { pai: "#container", filho: "introducao_number", tag: "section", conteudo: "", classe: "" },
+      { filho: "introducao_number", tag: "section" },
       { pai: "#introducao_number", filho: "introducao_number_h2", tag: "h2", conteudo: "Introdução" },
       { pai: "#introducao_number", filho: "introducao_number_p1", tag: "p", conteudo: `Em JavaScript, o tipo <code>Number</code> é usado para representar valores numéricos, tanto inteiros quanto de ponto flutuante (decimais). Diferentemente de algumas outras linguagens, o JavaScript possui apenas um tipo numérico para todos os números.` },
     ]
   },
-      {
+  {
     searchs: [],
     tags: [],
     duration: 0,
@@ -385,12 +311,12 @@ let itens = [
     examples: [],
     files: {
       audio: "",
-      video:"",
-      quiz:""
+      video: "",
+      quiz: ""
     },
     index: 0,
     structure_html: [
-      { pai: "#container", filho: "representacao_number", tag: "section", conteudo: "" },
+      { filho: "representacao_number", tag: "section" },
       { pai: "#representacao_number", filho: "representacao_number_h2", tag: "h2", conteudo: "Representação Interna (Padrão IEEE 754)" },
       { pai: "#representacao_number", filho: "representacao_number_p1", tag: "p", conteudo: "Internamente, os números em JavaScript são representados usando o formato de ponto flutuante de dupla precisão de 64 bits (IEEE 754). Isso significa que cada valor numérico é armazenado em 64 bits, divididos da seguinte forma:" },
       { pai: "#representacao_number", filho: "representacao_number_p2", tag: "p", conteudo: "Sinal (1 bit): Indica se o número é positivo (0) ou negativo (1)." },
@@ -399,7 +325,7 @@ let itens = [
       { pai: "#representacao_number", filho: "representacao_number_p5", tag: "p", conteudo: "Essa representação permite que o JavaScript lide com uma vasta gama de números, desde valores muito pequenos até valores muito grandes, bem como números com casas decimais." },
     ]
   },
-      {
+  {
     searchs: [],
     tags: [],
     duration: 0,
@@ -410,12 +336,12 @@ let itens = [
     examples: [],
     files: {
       audio: "",
-      video:"",
-      quiz:""
+      video: "",
+      quiz: ""
     },
     index: 0,
     structure_html: [
-      { pai: "#container", filho: "limites", tag: "section", conteudo: "" },
+      { filho: "limites", tag: "section" },
       { pai: "#limites", filho: "limites_h2", tag: "h2", conteudo: "Limites de Precisão" },
       { pai: "#limites", filho: "limites_p1", tag: "p", conteudo: "Devido à natureza de ponto flutuante da representação IEEE 754, é importante entender que nem todos os números reais podem ser representados com precisão total. Isso pode levar a pequenas imprecisões em cálculos envolvendo números decimais." },
       { pai: "#limites", filho: "limites_pre", tag: "pre", conteudo: `` },
@@ -425,10 +351,10 @@ let itens = [
     console.log(Number.MIN_SAFE_INTEGER) // (-9007199254740991 ): Representa o menor inteiro que pode ser representado com precisão em JavaScript.
         `
       },
-      { pai: "#limites", filho: "limites_div", tag: "div", conteudo: "", classe: "alert" },
+      { pai: "#limites", filho: "limites_div", tag: "div", classe: "alert" },
       { pai: "#limites_div", filho: "limites_div_h2", tag: "h3", conteudo: "CUIDADO COM OS LIMITES" },
       { pai: "#limites_div", filho: "limites_div_p", tag: "p", conteudo: "Números hexadecimais, binários e octais literais com prefixo 0x, 0b, 0o são válidos" },
-      { pai: "#limites_div", filho: "limites_div_pre", tag: "pre", conteudo: "" },
+      { pai: "#limites_div", filho: "limites_div_pre", tag: "pre" },
       {
         pai: "#limites_div_pre", filho: "limites_div_pre_code", tag: "code", conteudo: `
     // Números inteiros fora desse intervalo podem perder precisão.
@@ -442,16 +368,16 @@ let itens = [
         ` },
     ]
   },
-  { pai: "#container", filho: "especiais", tag: "section", conteudo: "" },
+  { filho: "especiais", tag: "section" },
   { pai: "#especiais", filho: "especiais_h2", tag: "h2", conteudo: "Valores Especiais" },
   { pai: "#especiais", filho: "especiais_p1", tag: "p", conteudo: "<code>NaN</code> (Not-a-Number): Representa um valor que não é um número. Geralmente resulta de operações matemáticas inválidas (por exemplo, dividir zero por zero, ou tentar converter uma string não numérica para um número).qualquer operação aritmética com <code>NaN</code> resultará em <code>NaN</code>. Detalhe é <code>Nan</code> não é igual a si mesmo (NaN === NaN é false). Para verificar se um valor é <code>NaN</code>, você deve usar a função global <code>isNaN()</code> ou, de forma mais confiável, <code>Number.isNaN()</code>." },
   { pai: "#especiais", filho: "especiais_p2", tag: "p", conteudo: "<code>Infinity</code>: Representa um valor numérico infinito positivo. Ocorre, por exemplo, ao dividir um número positivo por zero." },
   { pai: "#especiais", filho: "especiais_p3", tag: "p", conteudo: "<code>-Infinity</code>: Representa um valor numérico infinito negativo. Ocorre, por exemplo, ao dividir um número negativo por zero." },
-  { pai: "#container", filho: "propriedade", tag: "section", conteudo: "" },
+  { filho: "propriedade", tag: "section" },
   { pai: "#propriedade", filho: "propriedade_h2", tag: "h2", conteudo: "Propriedades" },
 
   { pai: "#propriedade", filho: "especiais_p4", tag: "p", conteudo: "O objeto global <code>Number</code> possui algumas propriedades estáticas (acessadas diretamente em Number, e não em instâncias de números) que fornecem informações úteis:" },
-  { pai: "#propriedade", filho: "especiais_pre", tag: "pre", conteudo: "" },
+  { pai: "#propriedade", filho: "especiais_pre", tag: "pre" },
   {
     pai: "#especiais_pre", filho: "especiais_pre_code", tag: "code", conteudo: `
     console.log(Number.EPSILON) // 2.220446049250313e-16 A menor diferença entre 1 e o próximo maior número de ponto flutuante representável. Útil para comparações de igualdade aproximada com números de ponto flutuante.
@@ -463,7 +389,7 @@ let itens = [
     console.log(Number.POSITIVE_INFINITY) // Infinity O valor Infinity.
     console.log(Number.NEGATIVE_INFINITY) // -Infinity O valor -Infinity.
     ` },
-  { pai: "#propriedade", filho: "propriedade_alert", tag: "div", conteudo: "", classe: "alert tip" },
+  { pai: "#propriedade", filho: "propriedade_alert", tag: "div", classe: "alert tip" },
   { pai: "#propriedade_alert", filho: "propriedade_alert_p", tag: "p", conteudo: ' Erros de precisão: exemplos concretos e Number.EPSILON' },
   { pai: "#propriedade_alert", filho: "propriedade_alert_pre", tag: "pre", conteudo: '' },
   {
@@ -475,17 +401,17 @@ function nearlyEqual(a, b) {
 
   ` },
 
-  { pai: "#container", filho: "overflow", tag: "section", conteudo: "" },
+  { filho: "overflow", tag: "section" },
   { pai: "#overflow", filho: "overflow_h2", tag: "h2", conteudo: "Overflow e Underflow silenciosos" },
   { pai: "#overflow", filho: "overflow_h3", tag: "h3", conteudo: "JavaScript não lança erro com overflow" },
-  { pai: "#overflow", filho: "overflow_pre", tag: "pre", conteudo: "" },
+  { pai: "#overflow", filho: "overflow_pre", tag: "pre" },
   {
     pai: "#overflow_pre", filho: "overflow_pre_code", tag: "code", conteudo: `
 Number.MAX_VALUE * 2 // Infinity
 Number.MIN_VALUE / 2 // 0 
   ` },
 
-  { pai: "#container", filho: "metodos_number", tag: "section", conteudo: "" },
+  { filho: "metodos_number", tag: "section" },
   { pai: "#metodos_number", filho: "metodos_number_h2", tag: "h2", conteudo: "Metodos" },
   { pai: "#metodos_number", filho: "metodos_number_h3", tag: "h3", conteudo: "Estaticos" },
   { pai: "#metodos_number", filho: "metodos_number_h2_p", tag: "p", conteudo: "O objeto Number também possui métodos estáticos para realizar conversões e verificações relacionadas a números:" },
@@ -499,7 +425,7 @@ console.log(Number.isNaN(NaN));           // true
 console.log(Number.isNaN('NaN'));         // false
 console.log(Number.isNaN(undefined));     // false
     ` },
-  { pai: "#metodos_number", filho: "metodos_number_alert_isNaN", tag: "div", conteudo: "", classe: "alert tip" },
+  { pai: "#metodos_number", filho: "metodos_number_alert_isNaN", tag: "div", classe: "alert tip" },
   { pai: "#metodos_number_alert_isNaN", filho: "metodos_number_alert_isNaN_p", tag: "p", conteudo: 'Não faz coerção de tipo como a função global isNaN(), ou seja, é mais confiável.' },
 
   { pai: "#metodos_number", filho: "metodos_number_isFinite_h3_span", tag: "span", conteudo: `Number.isFinite(value)`, classe: "method-name" },
@@ -511,7 +437,7 @@ console.log(Number.isFinite(10));         // true
 console.log(Number.isFinite(Infinity));   // false
 console.log(Number.isFinite('10'));       // false
     ` },
-  { pai: "#metodos_number", filho: "metodos_number_alert_isFinite", tag: "div", conteudo: "", classe: "alert tip" },
+  { pai: "#metodos_number", filho: "metodos_number_alert_isFinite", tag: "div", classe: "alert tip" },
   { pai: "#metodos_number_alert_isFinite", filho: "metodos_number_alert_isFinite_p", tag: "p", conteudo: 'Não faz coerção de tipo, diferente da função global isFinite().' },
 
   { pai: "#metodos_number", filho: "metodos_number_isInteger_h3_span", tag: "span", conteudo: `Number.isInteger(value)`, classe: "method-name" },
@@ -533,7 +459,7 @@ console.log(Number.isSafeInteger(9007199254740991));  // true
 console.log(Number.isSafeInteger(9007199254740992));  // false
 console.log(Number.isSafeInteger(3.14));              // false
     ` },
-  { pai: "#metodos_number", filho: "metodos_number_alert_intervalor", tag: "div", conteudo: "", classe: "alert tip" },
+  { pai: "#metodos_number", filho: "metodos_number_alert_intervalor", tag: "div", classe: "alert tip" },
   { pai: "#metodos_number_alert_intervalor", filho: "metodos_number_alert_intervalor_p", tag: "p", conteudo: 'Esse intervalo garante precisão exata nas operações.' },
 
   { pai: "#metodos_number", filho: "metodos_number_parseFloat_h3_span", tag: "span", conteudo: `Number.parseFloat(string)`, classe: "method-name" },
@@ -545,7 +471,7 @@ console.log(Number.parseFloat("3.14"));    // 3.14
 console.log(Number.parseFloat("314e-2"));  // 3.14
 console.log(Number.parseFloat("abc"));     // NaN
     ` },
-  { pai: "#metodos_number", filho: "metodos_number_alert_parsefloat", tag: "div", conteudo: "", classe: "alert tip" },
+  { pai: "#metodos_number", filho: "metodos_number_alert_parsefloat", tag: "div", classe: "alert tip" },
   { pai: "#metodos_number_alert_parsefloat", filho: "metodos_number_alert_parsefloat_p", tag: "p", conteudo: 'Similar à função global parseFloat(), mas como método do objeto Number.' },
 
   { pai: "#metodos_number", filho: "metodos_number_parseInt_h3_span", tag: "span", conteudo: `Number.parseInt(string, radix)`, classe: "method-name" },
@@ -558,7 +484,7 @@ console.log(Number.parseInt("10", 2));     // 2  (binário -> decimal)
 console.log(Number.parseInt("ff", 16));    // 255 (hexadecimal)
     ` },
 
-  { pai: "#metodos_number", filho: "metodos_number_alert_parseint", tag: "div", conteudo: "", classe: "alert tip" },
+  { pai: "#metodos_number", filho: "metodos_number_alert_parseint", tag: "div", classe: "alert tip" },
   { pai: "#metodos_number_alert_parseint", filho: "metodos_number_alert_parseint_p", tag: "p", conteudo: 'Similar à função global parseInt(), mas como método do objeto Number.' },
 
   { pai: "#metodos_number", filho: "instancia_h3", tag: "h3", conteudo: "Métodos de Instância" },
@@ -617,7 +543,7 @@ console.log(num4.toLocaleString('de-DE', { maximumFractionDigits: 0 }));
 // "1.234.568"
     ` },
   { pai: "#metodos_number", filho: "metodos_number_Coerção_h2", tag: "h2", conteudo: "Coerção" },
-  { pai: "#metodos_number", filho: "metodos_number_alert_Coerção", tag: "div", conteudo: "", classe: "alert tip" },
+  { pai: "#metodos_number", filho: "metodos_number_alert_Coerção", tag: "div", classe: "alert tip" },
   {
     pai: "#metodos_number_alert_Coerção", filho: "metodos_number_alert_Coerção_p", tag: "p", conteudo: `
 JavaScript frequentemente realiza coerção de tipo envolvendo números:
@@ -626,7 +552,7 @@ Para String: Usar o operador + com uma string ou o método toString() converte u
 Para Número: Vários operadores aritméticos (como -, *, /) e funções como Number(), parseInt(), e parseFloat() tentam converter outros tipos para números.
 
     ` },
-  { pai: "#metodos_number", filho: "metodos_number_Coerção_pre", tag: "pre", conteudo: "" },
+  { pai: "#metodos_number", filho: "metodos_number_Coerção_pre", tag: "pre" },
   {
     pai: "#metodos_number", filho: "metodos_number_Coerção_pre_code", tag: "code", conteudo: `
 '5' - 1   // 4
@@ -637,25 +563,25 @@ undefined + 1 // NaN
 ` },
 
   { pai: "#metodos_number", filho: "metodos_number_Performace_h2", tag: "h2", conteudo: "Performace" },
-  { pai: "#metodos_number", filho: "metodos_number_alert_Performace", tag: "div", conteudo: "", classe: "alert tip" },
+  { pai: "#metodos_number", filho: "metodos_number_alert_Performace", tag: "div", classe: "alert tip" },
   {
     pai: "#metodos_number_alert_Performace", filho: "metodos_number_alert_Performace_p", tag: "p", conteudo: `
 As operações aritméticas com números em JavaScript geralmente são rápidas, pois são implementadas nativamente pelo motor JavaScript. No entanto, é importante estar ciente das possíveis imprecisões de ponto flutuante em cálculos complexos.
     ` },
   // String
-  { pai: "#container", filho: "introducao_string", tag: "section", conteudo: "" },
+  { filho: "introducao_string", tag: "section" },
   { pai: "#introducao_string", filho: "introducao_string_h2", tag: "h2", conteudo: "Introdução" },
   { pai: "#introducao_string", filho: "introducao_string_p1", tag: "p", conteudo: "Em JavaScript, uma string é uma sequência de zero ou mais caracteres Unicode. Elas são usadas para representar texto." },
   { pai: "#introducao_string", filho: "introducao_string_p2", tag: "p", conteudo: "Um ponto crucial sobre strings em JavaScript é que elas são <strong  id=\"introducao_st\">imutáveis</strong>. Isso significa que, uma vez que uma string é criada, você não pode alterar seus caracteres individualmente. Qualquer operação que pareça modificar uma string, na verdade, cria uma nova string com as alterações desejadas." },
-  { pai: "#container", filho: "representacao", tag: "section", conteudo: "" },
+  { filho: "representacao", tag: "section" },
   { pai: "#representacao", filho: "representacao_h2", tag: "h2", conteudo: "Representação Interna" },
   { pai: "#representacao", filho: "representacao_p1", tag: "p", conteudo: "Internamente, as strings em JavaScript são codificadas usando UTF-16. Isso significa que cada caractere na string é representado por um ou dois valores de 16 bits (code units)." },
   { pai: "#representacao", filho: "representacao_p2", tag: "p", conteudo: "A maioria dos caracteres comuns é representada por um único code unit." },
   { pai: "#representacao", filho: "representacao_p3", tag: "p", conteudo: "Caracteres Unicode em planos superiores (fora do Plano Multilíngue Básico - BMP) são representados por um par de code units, conhecidos como surrogate pair." },
   { pai: "#representacao", filho: "representacao_p4", tag: "p", conteudo: "É importante estar ciente disso ao trabalhar com propriedades como <code>length</code> e ao iterar sobre strings, pois um único caractere pode ocupar um ou dois \"espaços\" em termos de code units." },
-  { pai: "#representacao", filho: "representacao_div", tag: "div", conteudo: "", classe: "alert" },
+  { pai: "#representacao", filho: "representacao_div", tag: "div", classe: "alert" },
   { pai: "#representacao_div", filho: "representacao_div_h3", tag: "h3", conteudo: "Exemplo de surrogate pair", },
-  { pai: "#representacao_div", filho: "representacao_div_pre", tag: "pre", conteudo: "", },
+  { pai: "#representacao_div", filho: "representacao_div_pre", tag: "pre", },
   {
     pai: "#representacao_div_pre", filho: "representacao_div_pre_code", tag: "code", conteudo: `
   let emojiComplexo = "😊"; // Este emoji é representado por um surrogate pair
@@ -666,7 +592,7 @@ As operações aritméticas com números em JavaScript geralmente são rápidas,
     console.log(char); // Saída: 😊
   }
     `},
-  { pai: "#representacao", filho: "representacao_alert", tag: "div", conteudo: "", classe: "alert tip" },
+  { pai: "#representacao", filho: "representacao_alert", tag: "div", classe: "alert tip" },
   { pai: "#representacao_alert", filho: "representacao_alert_h3", tag: "h3", conteudo: 'Strings são array-like mas não arrays.' },
   { pai: "#representacao_alert", filho: "representacao_alert_pre", tag: "pre", conteudo: '' },
   {
@@ -677,11 +603,11 @@ console.log([...emoji][0]);   // correto
 
     ` },
 
-  { pai: "#container", filho: "criacao", tag: "section", conteudo: "" },
+  { filho: "criacao", tag: "section" },
   { pai: "#criacao", filho: "criacao_h2", tag: "h2", conteudo: "Como Criar Strings" },
   { pai: "#criacao", filho: "criacao_p1", tag: "p", conteudo: "Existem várias maneiras de criar strings em JavaScript:" },
   { pai: "#criacao", filho: "criacao_h3_1", tag: "h3", conteudo: "Literais de String" },
-  { pai: "#criacao", filho: "criacao_pre_1", tag: "pre", conteudo: "" },
+  { pai: "#criacao", filho: "criacao_pre_1", tag: "pre" },
   {
     pai: "#criacao_pre_1", filho: "criacao_code_1", tag: "code",
     conteudo: `
@@ -689,7 +615,7 @@ console.log([...emoji][0]);   // correto
   let texto2 = "com aspas duplas";
         `},
   { pai: "#criacao", filho: "criacao_h3_2", tag: "h3", conteudo: "Template Literals (ES6+)" },
-  { pai: "#criacao", filho: "criacao_pre_2", tag: "pre", conteudo: "" },
+  { pai: "#criacao", filho: "criacao_pre_2", tag: "pre" },
   {
     pai: "#criacao_pre_2", filho: "criacao_code_2", tag: "code", conteudo: `
   let nome = "Maria";
@@ -697,7 +623,7 @@ console.log([...emoji][0]);   // correto
   
   `},
   { pai: "#criacao", filho: "criacao_h3_3", tag: "h3", conteudo: "Construtor String" },
-  { pai: "#criacao", filho: "criacao_pre_3", tag: "pre", conteudo: "" },
+  { pai: "#criacao", filho: "criacao_pre_3", tag: "pre" },
   {
     pai: "#criacao_pre_3", filho: "criacao_code_3", tag: "code", conteudo: `
   let texto3 = new String("texto"); // Cria um objeto String (não recomendado para uso geral)
@@ -714,13 +640,13 @@ String.raw\`linha1\\nlinha2\`
   ` },
 
 
-  { pai: "#container", filho: "propriedades", tag: "section", conteudo: "" },
+  { filho: "propriedades", tag: "section" },
   { pai: "#propriedades", filho: "propriedades_h2", tag: "h2", conteudo: "Propriedades" },
-  { pai: "#propriedades", filho: "propriedades_div_length", tag: "div", conteudo: "", classe: "method-container" },
+  { pai: "#propriedades", filho: "propriedades_div_length", tag: "div", classe: "method-container" },
   { pai: "#propriedades_div_length", filho: "propriedades_h3_length", tag: "h3", conteudo: `` },
   { pai: "#propriedades_h3_length", filho: "propriedades_h3_length_span", tag: "span", conteudo: `length`, classe: "method-name" },
   { pai: "#propriedades_div_length", filho: "propriedades_p1", tag: "p", conteudo: "Retorna o número de unidades de código (code units) na string." },
-  { pai: "#propriedades_div_length", filho: "propriedades_pre", tag: "pre", conteudo: "" },
+  { pai: "#propriedades_div_length", filho: "propriedades_pre", tag: "pre" },
   {
     pai: "#propriedades_pre", filho: "propriedades_code", tag: "code", conteudo: `
   let texto = "JavaScript";
@@ -728,7 +654,7 @@ String.raw\`linha1\\nlinha2\`
   
   `},
   { pai: "#propriedades_div_length", filho: "propriedades_p2", tag: "p", conteudo: 'Lembre-se que, devido à codificação UTF-16, alguns caracteres (como emojis) podem ocupar duas unidades de código, portanto <code>length</code> pode não corresponder ao número de caracteres visíveis.', classe: "alert" },
-  { pai: "#container", filho: "metodos", tag: "section", conteudo: "" },
+  { filho: "metodos", tag: "section" },
   { pai: "#metodos", filho: "metodos_h2", "tag": "h2", "conteudo": "Métodos" },
 
   { pai: "#metodos", filho: "metodos_charAt_h3", tag: "h3", conteudo: `` },
@@ -851,14 +777,14 @@ String.raw\`linha1\\nlinha2\`
   { pai: "#metodos", filho: "metodos_padEnd_pre", tag: "pre", conteudo: `` },
   { pai: "#metodos_padEnd_pre", filho: "metodos_padEnd_pre_code", tag: "code", conteudo: `let texto = '5';\nconsole.log(texto.padEnd(3, '0')); // '500'` },
 
-  { pai: "#container", filho: "regex-methods", tag: "section", conteudo: "" },
+  { filho: "regex-methods", tag: "section" },
   { pai: "#regex-methods", filho: "regex_methods_h2", tag: "h2", conteudo: "Métodos com Expressões Regulares" },
 
-  { pai: "#regex-methods", filho: "regex_match", tag: "div", conteudo: "", classe: "method-container" },
+  { pai: "#regex-methods", filho: "regex_match", tag: "div", classe: "method-container" },
   { pai: "#regex_match", filho: "regex_match_h3", tag: "h3", conteudo: `` },
   { pai: "#regex_match", filho: "regex_match_h3_span", tag: "span", conteudo: `match(regexp)`, classe: "method-name" },
   { pai: "#regex_match", filho: "regex_match_p", tag: "p", conteudo: "Retorna um array contendo os resultados da correspondência da expressão regular na string, ou null se não houver correspondência." },
-  { pai: "#regex_match", filho: "regex_match_pre", tag: "pre", conteudo: "" },
+  { pai: "#regex_match", filho: "regex_match_pre", tag: "pre" },
   {
     pai: "#regex_match_pre", filho: "regex_match_code", tag: "code", conteudo: `
   let texto = "O JavaScript é uma linguagem de programação incrível!";
@@ -866,12 +792,12 @@ String.raw\`linha1\\nlinha2\`
   
   `},
 
-  { pai: "#regex-methods", filho: "regex_matchAll", tag: "div", conteudo: "", classe: "method-container" },
+  { pai: "#regex-methods", filho: "regex_matchAll", tag: "div", classe: "method-container" },
   { pai: "#regex_matchAll", filho: "regex_matchAll_h3", tag: "h3", conteudo: `` },
   { pai: "#regex_matchAll_h3", filho: "regex_matchAll_h3_span", tag: "span", conteudo: `matchAll(regexp)`, classe: "method-name" },
 
   { pai: "#regex_matchAll", filho: "regex_matchAll_p", tag: "p", conteudo: "Retorna um iterador de todos os resultados da correspondência da expressão regular na string. Útil para obter todas as correspondências, especialmente com grupos de captura." },
-  { pai: "#regex_matchAll", filho: "regex_matchAll_pre", tag: "pre", conteudo: "" },
+  { pai: "#regex_matchAll", filho: "regex_matchAll_pre", tag: "pre" },
   {
     pai: "#regex_matchAll_pre", filho: "regex_matchAll_code", tag: "code", conteudo: `
   let texto = "teste1 teste2 teste3";
@@ -880,22 +806,22 @@ String.raw\`linha1\\nlinha2\`
   console.log(matches); // Array de correspondências com detalhes dos grupos
   
   `},
-  { pai: "#regex-methods", filho: "regex_search", tag: "div", conteudo: "", classe: "method-container" },
+  { pai: "#regex-methods", filho: "regex_search", tag: "div", classe: "method-container" },
   { pai: "#regex_search", filho: "regex_search_h3", tag: "h3", conteudo: `` },
   { pai: "#regex_search_h3", filho: "regex_search_h3_span", tag: "span", conteudo: `search(regexp)`, classe: "method-name" },
 
   { pai: "#regex_search", filho: "regex_search_p", tag: "p", conteudo: "Retorna o índice da primeira correspondência da expressão regular na string, ou -1 se não houver correspondência." },
-  { pai: "#regex_search", filho: "regex_search_pre", tag: "pre", conteudo: "" },
+  { pai: "#regex_search", filho: "regex_search_pre", tag: "pre" },
   {
     pai: "#regex_search_pre", filho: "regex_search_code", tag: "code", conteudo: `
   let texto = "JavaScript é incrível";
   console.log(texto.search(/incrível/)); // 14
   
   `},
-  { pai: "#container", filho: "coercao_string", tag: "section", conteudo: "" },
+  { filho: "coercao_string", tag: "section" },
   { pai: "#coercao_string", filho: "coercao_string_h2", tag: "h2", conteudo: "Coerção de Tipo" },
   { pai: "#coercao_string", filho: "coercao_string_p", tag: "p", conteudo: "JavaScript frequentemente realiza coerção de tipo implícita entre strings e outros tipos de dados. Por exemplo, ao usar o operador + com uma string e outro tipo, o outro tipo geralmente é convertido para string:" },
-  { pai: "#coercao_string", filho: "coercao_string_pre", tag: "pre", conteudo: "" },
+  { pai: "#coercao_string", filho: "coercao_string_pre", tag: "pre" },
   {
     pai: "#coercao_string_pre", filho: "coercao_string_code", tag: "code", conteudo: `
   console.log("5" + 2); // "52" (o número 2 é convertido para string)
@@ -904,13 +830,13 @@ String.raw\`linha1\\nlinha2\`
   console.log("5" * "2"); // 10 (ambas as strings são convertidas para números)
   
   `},
-  { pai: "#coercao_string", filho: "coercao_string_alert", tag: "div", conteudo: "", classe: "alert tip" },
+  { pai: "#coercao_string", filho: "coercao_string_alert", tag: "div", classe: "alert tip" },
   { pai: "#coercao_string_alert", filho: "coercao_string_alert_p", tag: "p", conteudo: 'Para conversões explícitas, você pode usar funções como <code>Number()</code>, <code>String()</code>, <code>parseInt()</code> ou o operador unário <code>+</code>.' },
-  { pai: "#container", filho: "performance", tag: "section", conteudo: "" },
+  { filho: "performance", tag: "section" },
   { pai: "#performance", filho: "performance_h2", tag: "h2", conteudo: "Performance" },
   { pai: "#performance", filho: "performance_p", tag: "p", conteudo: "Devido à imutabilidade das strings, operações que parecem modificar strings (como concatenação repetida dentro de um loop usando +) podem ser ineficientes, pois criam muitas strings intermediárias. Em cenários de manipulação intensiva de strings, é geralmente mais eficiente usar métodos como Array.prototype.join() após manipular as partes da string em um array." },
   { pai: "#performance", filho: "performance_h3", tag: "h3", conteudo: "Exemplo de problema de performance" },
-  { pai: "#performance", filho: "performance_pre", tag: "pre", conteudo: "" },
+  { pai: "#performance", filho: "performance_pre", tag: "pre" },
   {
     pai: "#performance_pre", filho: "performance_code", tag: "code", conteudo: `
   // Ineficiente para grandes números de iterações
@@ -928,12 +854,12 @@ String.raw\`linha1\\nlinha2\`
   
   `},
 
-  { pai: "#container", filho: "seguranca", tag: "section", conteudo: "" },
+  { filho: "seguranca", tag: "section" },
   { pai: "#seguranca", filho: "seguranca_h2", tag: "h2", conteudo: "Considerações de Segurança" },
   { pai: "#seguranca", filho: "seguranca_p1", tag: "p", conteudo: "Ao lidar com strings que vêm de fontes externas (como entrada do usuário), é crucial tomar precauções de segurança para evitar vulnerabilidades como Cross-Site Scripting (XSS). Isso pode envolver a sanitização ou codificação da entrada para garantir que ela seja tratada como texto e não como código executável." },
-  { pai: "#seguranca", filho: "seguranca_div_alert", tag: "div", conteudo: "", attrs: { class: "alert danger" } },
+  { pai: "#seguranca", filho: "seguranca_div_alert", tag: "div", attrs: { class: "alert danger" } },
   { pai: "#seguranca_div_alert", filho: "seguranca_h3_alert", tag: "h3", conteudo: "Exemplo de risco de XSS" },
-  { pai: "#seguranca_div_alert", filho: "seguranca_pre_alert", tag: "pre", conteudo: "" },
+  { pai: "#seguranca_div_alert", filho: "seguranca_pre_alert", tag: "pre" },
   {
     pai: "#seguranca_pre_alert", filho: "seguranca_code_alert", tag: "code", conteudo: `
   // Dado malicioso (simulando entrada de usuário)
@@ -947,7 +873,7 @@ String.raw\`linha1\\nlinha2\`
   `},
   { pai: "#seguranca", filho: "seguranca_h3_sanitizacao", tag: "h3", conteudo: "Sanitização/Codificação de Dados" },
   { pai: "#seguranca", filho: "seguranca_p2", tag: "p", conteudo: "Use bibliotecas como DOMPurify para remover código executável de strings:" },
-  { pai: "#seguranca", filho: "seguranca_pre1", tag: "pre", conteudo: "" },
+  { pai: "#seguranca", filho: "seguranca_pre1", tag: "pre" },
   {
     pai: "#seguranca_pre1", filho: "seguranca_code1", tag: "code", conteudo: `
   import DOMPurify from 'dompurify';
@@ -955,8 +881,8 @@ String.raw\`linha1\\nlinha2\`
   const safeStr = ["Olá, ", safeInput].join("");
   
   `},
-  { pai: "#seguranca", filho: "seguranca_p3", tag: "p", conteudo: "Para contextos não HTML (como URLs ou atributos), use funções de codificação:" },
-  { pai: "#seguranca", filho: "seguranca_pre2", tag: "pre", conteudo: "" },
+  { pai: "#seguranca", filho: "seguranca_p3", tag: "p", conteudo: "Para conTextos não HTML (como URLs ou atributos), use funções de codificação:" },
+  { pai: "#seguranca", filho: "seguranca_pre2", tag: "pre" },
   {
     pai: "#seguranca_pre2", filho: "seguranca_code2", tag: "code", conteudo: `
   // Codificar para HTML:
@@ -967,13 +893,13 @@ String.raw\`linha1\\nlinha2\`
   `},
   { pai: "#seguranca", filho: "seguranca_h3_textcontent", tag: "h3", conteudo: "Evite innerHTML quando possível" },
   { pai: "#seguranca", filho: "seguranca_p4", tag: "p", conteudo: "Prefira métodos seguros como textContent para inserir dados não confiáveis:" },
-  { pai: "#seguranca", filho: "seguranca_pre3", tag: "pre", conteudo: "" },
+  { pai: "#seguranca", filho: "seguranca_pre3", tag: "pre" },
   { pai: "#seguranca_pre3", filho: "seguranca_code3", tag: "code", conteudo: `element.textContent = userInput; // Seguro: trata tudo como texto!` },
 
-  { pai: "#container", filho: "normalizacao", tag: "section", conteudo: "" },
+  { filho: "normalizacao", tag: "section" },
   { pai: "#normalizacao", filho: "normalizacao_h2", tag: "h2", conteudo: "Normalização" },
   { pai: "#normalizacao", filho: "normalizacao_p4", tag: "p", conteudo: "Strings com acentos ou caracteres compostos (como é vs e + acento) podem parecer iguais visualmente, mas internamente são diferentes. Isso é crucial para buscas e comparações." },
-  { pai: "#normalizacao", filho: "normalizacao_pre", tag: "pre", conteudo: "" },
+  { pai: "#normalizacao", filho: "normalizacao_pre", tag: "pre" },
   {
     pai: "#normalizacao_pre", filho: "normalizacao_pre_code", tag: "code", conteudo: `
 const a = 'é'; // U+00E9
@@ -982,10 +908,10 @@ console.log(a === b); // false
 console.log(a.normalize() === b.normalize()); // true
 ` },
 
-  { pai: "#container", filho: "localidade", tag: "section", conteudo: "" },
+  { filho: "localidade", tag: "section" },
   { pai: "#localidade", filho: "localidade_h2", tag: "h2", conteudo: "Comparação de Strings Sensível a Localidade" },
   { pai: "#localidade", filho: "localidade_p4", tag: "p", conteudo: "Comparações padrão com === ou > não respeitam ordenações linguísticas (por exemplo, alemão ou sueco)." },
-  { pai: "#localidade", filho: "localidade_pre", tag: "pre", conteudo: "" },
+  { pai: "#localidade", filho: "localidade_pre", tag: "pre" },
   {
     pai: "#localidade_pre", filho: "localidade_pre_code", tag: "code", conteudo: `
 console.log('ä'.localeCompare('z', 'de')); // -1 (alemão)
@@ -993,10 +919,10 @@ console.log('ä'.localeCompare('z', 'sv')); // 1 (sueco)
 ` },
 
 
-  { pai: "#container", filho: "tagged", tag: "section", conteudo: "" },
+  { filho: "tagged", tag: "section" },
   { pai: "#tagged", filho: "tagged_h2", tag: "h2", conteudo: "Tagged Template Literals" },
   { pai: "#tagged", filho: "tagged_p4", tag: "p", conteudo: "Tagged Template Literals em JavaScript são uma feature avançada de template literals (strings com crases `), que permite processar a interpolação de strings com uma função tag personalizada antes que o valor final seja construído." },
-  { pai: "#tagged", filho: "tagged_pre", tag: "pre", conteudo: "" },
+  { pai: "#tagged", filho: "tagged_pre", tag: "pre" },
   {
     pai: "#tagged_pre", filho: "tagged_pre_code", tag: "code", conteudo: `
 function tag(strings, ...values) {
