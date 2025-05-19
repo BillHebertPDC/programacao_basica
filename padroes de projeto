@@ -1,0 +1,102 @@
+const designPatterns = new Map([
+  // Padrões Criacionais
+  ['Creational', [
+    'Singleton',
+    'Factory Method',
+    'Abstract Factory',
+    'Builder',
+    'Prototype',
+    'Object Pool',
+    'Lazy Initialization'
+  ]],
+
+  // Padrões Estruturais
+  ['Structural', [
+    'Adapter',
+    'Bridge',
+    'Composite',
+    'Decorator',
+    'Facade',
+    'Flyweight',
+    'Proxy',
+    'Private Class Data',
+    'Marker'
+  ]],
+
+  // Padrões Comportamentais
+  ['Behavioral', [
+    'Chain of Responsibility',
+    'Command',
+    'Interpreter',
+    'Iterator',
+    'Mediator',
+    'Memento',
+    'Observer',
+    'State',
+    'Strategy',
+    'Template Method',
+    'Visitor',
+    'Null Object',
+    'Specification'
+  ]],
+
+  // Padrões Arquiteturais
+  ['Architectural', [
+    'MVC',
+    'MVP',
+    'MVVM',
+    'Flux',
+    'Redux',
+    'CQRS',
+    'Event Sourcing',
+    'Microservices',
+    'Hexagonal Architecture (Ports and Adapters)',
+    'Layered Architecture',
+    'Microkernel',
+    'Client-Server',
+    'Broker',
+    'Pipe and Filter',
+    'Space-Based'
+  ]],
+
+  // Padrões Modernos / JS / Funcionais
+  ['Modern/JS/Functional', [
+    'Module Pattern',
+    'Revealing Module Pattern',
+    'IIFE (Immediately Invoked Function Expression)',
+    'Factory Function',
+    'Dependency Injection',
+    'Service Locator',
+    'Mixin',
+    'Currying',
+    'Memoization',
+    'Partial Application',
+    'Function Composition',
+    'Middleware',
+    'Strategy (Functional)',
+    'Observer (RxJS)',
+    'Async Iterator',
+    'Promise Chain',
+    'EventEmitter Pattern',
+    'Functional Core/Imperative Shell'
+  ]],
+
+  // Padrões Concorrência / Reativos
+  ['Concurrency/Reactive', [
+    'Observer Pattern (Reactive Streams)',
+    'Publish/Subscribe',
+    'Scheduler',
+    'Reactor',
+    'Proactor',
+    'Actor Model',
+    'Message Queue Pattern',
+    'Backpressure',
+    'Supervisor Pattern'
+  ]]
+]);
+
+// Exemplo de iteração
+for (const [category, patterns] of designPatterns.entries()) {
+  console.log(`\n${category}:`);
+  patterns.forEach(p => console.log(` - ${p}`));
+}

@@ -29,8 +29,9 @@ titulos.set("comparadores", "Comparadores")
 titulos.set("logico", "Lógico")
 titulos.set("boxed", "Boxed")
 titulos.set("caracteristicas de tipos primitivos", "Características dos tipos primitivos")
-titulos.set("Diferença entre null e undefined","Diferença entre null e undefined")
-titulos.set("Conversões","Conversões")
+titulos.set("Diferença entre null e undefined", "Diferença entre null e undefined")
+titulos.set("Conversões", "Conversões")
+titulos.set("Propriedades de null", "Propriedades de null")
 
 const textos = new Map()
 
@@ -175,6 +176,15 @@ A diferença entre <code>null</code> e <code>undefined</code> pode parecer sutil
 **Resumo:**  
 Pense em <code>undefined</code> como algo que ainda não tem um valor atribuído (ausência não intencional), enquanto <code>null</code> é um valor definido explicitamente para indicar "sem valor".
 `)
+textos.set("Pitfalls em operações com null", `
+  Operações com null em Node.js (e JavaScript em geral) trazem várias armadilhas ("pitfalls") que podem causar comportamentos inesperados, crashes silenciosos, ou vulnerabilidades difíceis de detectar.
+`)
+textos.set("Propriedades de null", `
+Valores null não ativam default na desestruturação.
+Somente undefined ativa. 
+Mas null é um valor explícito.
+diferente de um \"hole\".
+  `)
 
 
 
@@ -262,13 +272,13 @@ Boolean.prototype.myProp = 123;
 console.log((true).myProp); // 123
 `)
 
-codigos.set("tipo null",`
+codigos.set("tipo null", `
 typeof null // "object" (bug histórico da linguagem)
 // Bug legado do início da linguagem:
 // null é representado internamente como 0x00, o que, em comparação binária, é interpretado como um tipo "object"
 `)
 
-codigos.set("null vs undefined",`
+codigos.set("null vs undefined", `
 let x;
 console.log(x); // undefined / Ausência de valor não atribuída / Variável não inicializada, argumento omitido / tipo: undefined
 
@@ -283,7 +293,38 @@ null == false       // false
 null == 0           // false
 null == ''          // false
 `)
-
+codigos.set("conversao em null", `
+    Boolean(null) // false
+    Number(null) // 0
+    String(null) // "null"
+    //null é usado para anular uma referência, esvaziar um objeto ou resetar um valor
+    let user = {
+      name: "Bill",
+      profile: { ... }
+    };
+    
+    user.profile = null; // remove a referência, indicando "sem perfil"
+    
+    null + 1         // 1     -> null vira 0
+    null > 0         // false -> null vira 0
+    null == 0        // false -> comparações == são sutis
+    null >= 0        // true  -> coerção + comparação
+    
+    JSON.stringify({ a: null }); // '{"a":null}'
+    JSON.parse('{"a":null}');   // { a: null }
+  `)
+  codigos.set("propriedades de null",`
+    let { a = 1 } = { a: null };
+    console.log(a); // null (não aplica valor default!)
+    
+    let { b = 2 } = {};
+    console.log(b); // 2
+    
+    let arr = [null, , undefined];
+    console.log(arr.length); // 3
+    console.log(arr[1]);     // undefined (hole)
+    arr.map(x => x);         // [null, <1 empty item>, undefined]
+`)
 //console.log(textos.get(""))
 
 

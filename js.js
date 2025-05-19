@@ -178,31 +178,10 @@ let itens = [
     structure_html: [
       { filho: "conversao", tag: "section" },
       { pai: "#conversao", filho: "conversao_h2", tag: "h2", conteudo: Titulos },
-      { pai: "#conversao", filho: "conversao_p", tag: "p", conteudo: " Pitfalls em operações com null" },
+      { pai: "#conversao", filho: "conversao_p", tag: "p", conteudo: Textos },
       { pai: "#conversao", filho: "conversao_pre", tag: "pre" },
       {
-        pai: "#conversao_pre", filho: "conversao_pre_code", tag: "code", conteudo: `
-    Boolean(null) // false
-    Number(null) // 0
-    String(null) // "null"
-    //null é usado para anular uma referência, esvaziar um objeto ou resetar um valor
-    let user = {
-      name: "Bill",
-      profile: { ... }
-    };
-    
-    user.profile = null; // remove a referência, indicando "sem perfil"
-    
-    null + 1         // 1     -> null vira 0
-    null > 0         // false -> null vira 0
-    null == 0        // false -> comparações == são sutis
-    null >= 0        // true  -> coerção + comparação
-    
-    JSON.stringify({ a: null }); // '{"a":null}'
-    JSON.parse('{"a":null}');   // { a: null }
-    
-    
-        ` },
+        pai: "#conversao_pre", filho: "conversao_pre_code", tag: "code", conteudo:Codigos.get("conversao em null")  },
     ]
   },
   {
@@ -222,8 +201,8 @@ let itens = [
     index: 0,
     structure_html: [
       { filho: "propriedade_null", tag: "section" },
-      { pai: "#propriedade_null", filho: "propriedade_null_h2", tag: "h2", conteudo: "Propriedade_null" },
-      { pai: "#propriedade_null", filho: "propriedade_null_p1", tag: "p", conteudo: "Valores null não ativam default na desestruturação. Somente undefined ativa. Mas null é um valor explícito; diferente de um \"hole\"." },
+      { pai: "#propriedade_null", filho: "propriedade_null_h2", tag: "h2", conteudo: Titulos.get("Propriedades de null") },
+      { pai: "#propriedade_null", filho: "propriedade_null_p1", tag: "p", conteudo: Textos.get() },
       { pai: "#propriedade_null", filho: "propriedade_null_pre", tag: "pre" },
       {
         pai: "#propriedade_null_pre", filho: "propriedade_null_pre_code", tag: "code", conteudo: `
