@@ -1,11 +1,4 @@
-let t = new Set()
-t.add("opas")
-t.add("opas2")
-console.log(t)
-let titulos = new Map()
-titulos.set("Introdução", "Introdução")
-titulos.set("Introdução2", "Introdução")
-console.log(titulos)
+
 
 function benchmark(fn, iterations) {
     const start = performance.now();

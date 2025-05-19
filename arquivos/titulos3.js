@@ -409,9 +409,6 @@ const Titulos = new Map([
     ['composicao_basica', 'Composição de Funções de Forma Simples'],
     ['composicao_funcional', 'Composição de Funções em Programação Funcional'],
 
-
-
-
     // funcoes com parametros
 
     ['parametros', 'Parâmetros de Funções'],
