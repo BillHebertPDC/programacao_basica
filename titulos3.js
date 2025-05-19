@@ -90,8 +90,6 @@ const Titulos = new Map([
     ['this_em_objetos', 'this em Objetos'],
     ['this_em_funcoes', 'this em Funções Normais'],
 
-
-
     // escopo
 
     ['escopo', 'Escopo em JavaScript'],
@@ -103,6 +101,7 @@ const Titulos = new Map([
     ['contexto_de_execucao', 'Contexto de Execução no JavaScript'],
     ['pilha_de_execucao', 'Pilha de Execução'],
     ['empilhamento_de_execucao', 'Empilhamento e Execução de Funções'],
+    
     // escopo de variaveis
 
     ['escopo_variaveis', 'Escopo de Variáveis em JavaScript'],
